@@ -8,8 +8,6 @@ logfiles by receiving a `SIGUR1` signal.
 This feature is very useful when you need cut logfiles while you don't want
 to shutdown the server. All you need to do now is cutting the logfile on the fly.
 
-> **NOTE**: signal is not supported by windows, so the feature is not available there.
-
 ## Default logrotate configuration directory
 
 For debian, the default directory for logrotate should be `/etc/logrotate.d/`
@@ -63,6 +61,7 @@ The configuration for logrotate could be like this:
 	notifempty
 	sharedscripts
 }
+
 ```
 
 You can save this file, in debian for example, at `/etc/logrotate.d/seafile`.

@@ -2,8 +2,8 @@
 
 ## Seafile Web API
 
-The API document is moved to https://download.seafile.com/published/web-api/home.md
+The API document is moved to <https://download.seafile.com/published/web-api/home.md>
 
-## <a id="admin-only"></a>Admin Only
+## Admin Only
 
-The Admin API document is moved to https://download.seafile.com/published/web-api/v2.1-admin
+The Admin API document is moved to <https://download.seafile.com/published/web-api/v2.1-admin>
