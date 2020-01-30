@@ -10,16 +10,14 @@ The GC program cleans up two types of unused blocks:
 1. Blocks that no library references to, that is, the blocks belong to deleted libraries;
 2. If you set history length limit on some libraries, the out-dated blocks in those libraries will also be removed.
 
-**Before running GC, you must shutdown the Seafile program on your server if you use the community edition. For professional edition, from version 3.1.11, online GC operation is supported. If you use Professional edition, you don't need to shutdown the Seafile program if you are using MySQL or PostgreSQL as database.**  
+**Before running GC, you must shutdown the Seafile program on your server if you use the community edition. For professional edition, online GC operation is supported. If you use Professional edition, you don't need to shutdown the Seafile program if you are using MySQL.**
 This is because new blocks written into Seafile while GC is running may be mistakenly deleted by the GC program.
 
-***Community version - GC cleanup Script***
+**_Community version - GC cleanup Script_**
 
 At the bottom of the page there is a script that you can use to run the cleanup manually or e.g. once a week with as cronjob.
 
-## Run GC in version 4.1.1 and later
-
-In community edition 4.1.1 and Pro edition 4.1.0, GC program's command line and output are improved.
+## Run GC
 
 ### Dry-run Mode
 
@@ -27,6 +25,7 @@ To see how much garbage can be collected without actually removing any garbage, 
 
 ```
 seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
+
 ```
 
 The output should look like:
@@ -68,6 +67,7 @@ The output should look like:
 repo-id1
 repo-id2
 repo-id3
+
 ```
 
 If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.
@@ -80,6 +80,7 @@ To actually remove garbage blocks, run without the --dry-run option:
 
 ```
 seaf-gc.sh [repo-id1] [repo-id2] ...
+
 ```
 
 If libraries ids are specified, only those libraries will be checked for garbage.
@@ -88,6 +89,7 @@ As described before, there are two types of garbage blocks to be removed. Someti
 
 ```
 seaf-gc.sh -r
+
 ```
 
 **In Seafile version 4.1.1 and later, libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
@@ -96,44 +98,34 @@ seaf-gc.sh -r
 
 Since Pro server 5.1.0, you can specify the thread number in GC. By default,
 
-- If storage backend is S3/Swift/Ceph, 10 threads are started to do the GC work.
-- If storage backend is file system, only 1 thread is started.
+* If storage backend is S3/Swift/Ceph, 10 threads are started to do the GC work.
+* If storage backend is file system, only 1 thread is started.
 
 You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do GC on one library. For example, the following command will use 20 threads to GC all libraries:
 
 ```
 seaf-gc.sh -t 20
+
 ```
 
 Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.
-
-## Run GC in older versions (before 4.1.1)
-
-To run GC program
-
-    ./seaf-gc.sh run
-
-If you want to do sanity check before actually removing any data, you can use the --dry-run option
-
-    ./seaf-gc.sh dry-run
-
-It will show you the total block number vs. the number of blocks to be removed.
-
-To check data integrity after running GC, you can use [seaf-fsck](seafile_fsck.md)
 
 ## GC cleanup script for Community Version
 
 To use this script you need:
 
-- Setup the seafile-service file at '/etc/init.d/seafile-server'
-- Files of seafile setup need to be owner by 'seafile:nogroup' or 'seafile:seafile'
-- Run the script with sudo or as root
-- Put the script into crontab of a root user
+* Setup the seafile-service file at '/etc/init.d/seafile-server'
+* Files of seafile setup need to be owner by 'seafile:nogroup' or 'seafile:seafile'
+* Run the script with sudo or as root
+* Put the script into crontab of a root user
 
 Create the script file (change the location to your liking):
 
-    touch /opt/haiwen/seafile/cleanupScript.sh
-    
+```
+touch /opt/haiwen/seafile/cleanupScript.sh
+
+```
+
 Use your favorite text editor and paste the following code:
 
 ```
@@ -172,19 +164,30 @@ systemctl start seafile.service
 systemctl start seahub.service
 
 echo Seafile cleanup done!
+
 ```
+
 Make sure that the script has been given execution rights, to do that run this command.
 
-    sudo chmod +x /path/to/yourscript.sh
+```
+sudo chmod +x /path/to/yourscript.sh
+
+```
 
 Then open crontab with the root user
 
-    crontab -e
-    
+```
+crontab -e
+
+```
+
 Add the following line (change the location of your script accordingly!)
 
-    0 2 * * Sun /opt/haiwen/seafile/cleanupScript.sh
-    
+```
+0 2 * * Sun /opt/haiwen/seafile/cleanupScript.sh
+
+```
+
 The script will then run every Sunday at 2:00 AM.
 
 ## GC in the [seafile docker container](https://github.com/haiwen/seafile-docker)

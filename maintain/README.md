@@ -39,3 +39,9 @@ You can run Seafile GC to remove unused files:
 ### Clean database
 
 * [Clean database](clean_database.md)
+
+### Export report
+
+* [Export report](export_report.md)
+
+

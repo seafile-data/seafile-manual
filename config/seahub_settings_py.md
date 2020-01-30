@@ -2,7 +2,7 @@
 
 Note: You can also modify most of the config items via web interface. The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files. If you want to disable settings via web interface, you can add `ENABLE_SETTINGS_VIA_WEB = False` to `seahub_settings.py`.
 
-##  Sending Email Notifications on Seahub
+## Sending Email Notifications on Seahub
 
 Refer to [email sending documentation](sending_email.md).
 
@@ -18,6 +18,7 @@ Refer to ["add memcached"](../deploy/add_memcached.md).
 # For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = ['.example.com'].
 # Please refer https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts for details.
 ALLOWED_HOSTS = ['.myseafile.com']
+
 ```
 
 ## User management options
@@ -87,13 +88,20 @@ ENABLE_WIKI = True
 # Enable the feature. pycryptodome should be installed first.
 # sudo pip install pycryptodome==3.7.2
 ENABLE_WEBDAV_SECRET = True
+
+# Since version 7.0.9, you can force a full user to log in with a two factor authentication.
+# The prerequisite is that the administrator should 'enable two factor authentication' in the 'System Admin -> Settings' page.
+# Then you can add the following configuration information to the configuration file.
+ENABLE_FORCE_2FA_TO_ALL_USERS = True
+
 ```
 
-## `repo snapshot label` feature
+## Library snapshot label feature
 
 ```
 # Turn on this option to let users to add a label to a library snapshot. Default is `False`
 ENABLE_REPO_SNAPSHOT_LABEL = False
+
 ```
 
 ## Library options
@@ -151,6 +159,12 @@ ENABLE_SHARE_TO_ALL_GROUPS = True
 # Enable or disable user to clean trash (default is True)
 # Since version 6.3.6
 ENABLE_USER_CLEAN_TRASH = True
+
+# Add a report abuse button on download links. (since version 7.1.0)
+# Users can report abuse on the share link page, fill in the report type, contact information, and description.
+# Default is false.
+ENABLE_SHARE_LINK_REPORT_ABUSE = True
+
 ```
 
 Options for online file preview:
@@ -192,6 +206,7 @@ THUMBNAIL_ROOT = '/haiwen/seahub-data/thumbnail/thumb/'
 # Default size for picture preview. Enlarge this size can improve the preview quality.
 # NOTE: since version 6.1.1
 THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
+
 ```
 
 ## Cloud Mode
@@ -204,8 +219,8 @@ CLOUD_MODE = True
 
 # Disable global address book
 ENABLE_GLOBAL_ADDRESSBOOK = False
-```
 
+```
 
 ## External authentication
 
@@ -222,10 +237,10 @@ ENABLE_KRB5_LOGIN = True
 # Enable authentication with Shibboleth
 # Default is False
 ENABLE_SHIBBOLETH_LOGIN = True
+
 ```
 
 ## Other options
-
 
 ```python
 # Disable settings via Web interface in system admin->settings
@@ -280,6 +295,7 @@ UNREAD_NOTIFICATIONS_REQUEST_INTERVAL = 3 * 60 # seconds
 ENABLE_DELETE_ACCOUNT = False
 ENABLE_UPDATE_USER_INFO = False
 ENABLE_CHANGE_PASSWORD = False
+
 ```
 
 ## Pro edition only options
@@ -325,13 +341,10 @@ VIRUS_SCAN_NOTIFY_LIST = ['user_a@seafile.com', 'user_b@seafile.com']
 # Since version 6.2.11
 ENABLE_CHANGE_PASSWORD = True
 
-# Enable group discussion. Default to `True`
-# Since version 6.2.11
-ENABLE_GROUP_DISCUSSION = True
-
 # Enable file comments. Default to `True`
 # Since version 6.2.11
 ENABLE_FILE_COMMENT = True
+
 ```
 
 ## RESTful API
@@ -351,6 +364,7 @@ REST_FRAMEWORK = {
 # e.g. REST_FRAMEWORK_THROTTING_WHITELIST = ['127.0.0.1', '192.168.1.1']
 # Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/deploy/deploy_with_nginx.html.
 REST_FRAMEWORK_THROTTING_WHITELIST = []
+
 ```
 
 ## Seahub Custom Functions
@@ -389,6 +403,7 @@ def custom_search_user(request, emails):
             filtered_emails.append(email)
 
     return filtered_emails
+
 ```
 
 > **NOTE**, you should NOT change the name of `custom_search_user` and `seahub_custom_functions/__init__.py`
@@ -422,6 +437,7 @@ def custom_get_groups(request):
     groups += ccnet_api.get_groups('test@test.com')
 
     return groups
+
 ```
 
 > **NOTE**, you should NOT change the name of `custom_get_groups` and `seahub_custom_functions/__init__.py`
@@ -433,5 +449,7 @@ def custom_get_groups(request):
 
 ```bash
 ./seahub.sh restart
+
 ```
+
 

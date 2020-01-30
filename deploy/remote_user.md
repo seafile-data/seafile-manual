@@ -1,4 +1,4 @@
-## Overview
+# SSO using Remote User
 
 Starting from 7.0.0, Seafile can integrate with various Single Sign On systems via a proxy server. Examples include Apache as Shibboleth proxy, or LemonLdap as a proxy to LDAP servers, or Apache as Kerberos proxy. Seafile can retrieve user information from special request headers (HTTP_REMOTE_USER, HTTP_X_AUTH_USER, etc.) set by the proxy servers.
 
@@ -35,16 +35,17 @@ REMOTE_USER_ATTRIBUTE_MAP = {
     'HTTP_DISPLAYNAME': 'name',
     'HTTP_MAIL': 'contact_email',
 
-    # for shibboleth user info
+    # for user info
     "HTTP_GIVENNAME": 'givenname',
     "HTTP_SN": 'surname',
     "HTTP_ORGANIZATION": 'institution',
     
-    # for shibboleth user role
+    # for user role
     'HTTP_Shibboleth-affiliation': 'affiliation',
 }
 
-# for shibboleth user role
+# Map affiliation to user role. Though the config name is SHIBBOLETH_AFFILIATION_ROLE_MAP,
+# it is not restricted to Shibboleth
 SHIBBOLETH_AFFILIATION_ROLE_MAP = {
     'employee@uni-mainz.de': 'staff',
     'member@uni-mainz.de': 'staff',
@@ -56,6 +57,7 @@ SHIBBOLETH_AFFILIATION_ROLE_MAP = {
         ('*', 'guest'),
     ),
 }
+
 ```
 
 Then restart Seafile.

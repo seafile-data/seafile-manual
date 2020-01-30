@@ -1,8 +1,8 @@
 # Deploy in a cluster
 
-**Update**: Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details.
+**Update**: Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details
 
-## <a id="wiki-arch"></a> Architecture
+## Architecture
 
 The Seafile cluster solution employs a 3-tier architecture:
 
@@ -33,7 +33,7 @@ There are a few steps to deploy a Seafile cluster:
 5. Setup load balancer
 6. [Setup backgroup task node](enable_search_and_background_tasks_in_a_cluster.md)
 
-## <a id="wiki-preparation"></a>Preparation
+## Preparation
 
 ### Hardware, Database, Memcached
 
@@ -46,17 +46,21 @@ In small cluster, you can re-use the 3 Seafile servers to run memcached cluster 
 On each mode, you need to install some python libraries.
 
 First make sure your have installed Python 2.7, then:
+
 ```
 sudo easy_install pip
 sudo pip install boto
+
 ```
 
 If you receive an error stating "Wheel installs require setuptools >= ...", run this between the pip and boto lines above
+
 ```
 sudo pip install setuptools --no-use-wheel --upgrade
+
 ```
 
-## <a id="wiki-configure-single-node"></a> Configure a Single Node
+## Configure a Single Node
 
 You should make sure the config files on every Seafile server are consistent.
 
@@ -64,11 +68,11 @@ You should make sure the config files on every Seafile server are consistent.
 
 Put the license you get under the top level diretory. In our wiki, we use the diretory `/data/haiwen/` as the top level directory.
 
-
 ### Download/Uncompress Seafile Professional Server
 
 ```
 tar xf seafile-pro-server_6.1.3_x86-64.tar.gz
+
 ```
 
 Now you have:
@@ -77,7 +81,9 @@ Now you have:
 haiwen
 ├── seafile-license.txt
 └── seafile-pro-server-6.1.3/
+
 ```
+
 ### Setup Seafile
 
 Please follow [Download and Setup Seafile Professional Server With MySQL](download_and_setup_seafile_professional_server.md) to setup a single Seafile server node.
@@ -94,6 +100,7 @@ If you use a single memcached server, you have to add the following configuratio
 [cluster]
 enabled = true
 memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
+
 ```
 
 If you use memcached cluster, the way you setup the memcached cluster and the way to configure it in seafile.conf depend on your Seafile server version. The recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
@@ -106,6 +113,7 @@ For Seafile server older than 6.2.11, you need to specify all the memcached serv
 [cluster]
 enabled = true
 memcached_options = --SERVER=192.168.1.134 --SERVER=192.168.1.135 --SERVER=192.168.1.136 --POOL-MIN=10 --POOL-MAX=100 --RETRY-TIMEOUT=3600
+
 ```
 
 Notice that there is a `--RETRY-TIMEOUT=3600` option in the above config. This option is important for dealing with memcached server failures. After a memcached server in the cluster fails, Seafile server will stop trying to use it for "RETRY-TIMEOUT" (in seconds). You should set this timeout to relatively long time, to prevent Seafile from retrying the failed server frequently, which may lead to frequent request errors for the clients.
@@ -118,6 +126,7 @@ Since version 6.2.11, the recommended way to setup memcached cluster has been ch
 [cluster]
 enabled = true
 memcached_options = --SERVER=<floating IP address> --POOL-MIN=10 --POOL-MAX=100
+
 ```
 
 (Optional) The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port 11001. You can change this by adding the following config option to `seafile.conf`
@@ -125,6 +134,7 @@ memcached_options = --SERVER=<floating IP address> --POOL-MIN=10 --POOL-MAX=100
 ```
 [cluster]
 health_check_port = 12345
+
 ```
 
 #### seahub_settings.py
@@ -145,6 +155,7 @@ Add following to `seafevents.conf` to disable file indexing service on the local
 ```
 [INDEX FILES]
 external_es_server = true
+
 ```
 
 Here is an example `[INDEX FILES]` section:
@@ -158,10 +169,10 @@ index_office_pdf = true
 external_es_server = true
 es_host = background.seafile.com
 es_port = 9200
+
 ```
 
 Note: `enable = true` should be left unchanged. For versions older than 6.1, `es_port` was 9500.
-
 
 ### Update Seahub Database
 
@@ -169,6 +180,7 @@ In cluster environment, we have to store avatars in the database instead of in a
 
 ```
 CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
+
 ```
 
 ### Backend Storage Settings
@@ -180,7 +192,6 @@ You also need to add the settings for backend cloud storage systems to the confi
 * For OpenStack Swift: [Setup With OpenStackSwift](setup_with_openstackswift.md)
 * For Ceph: [Setup With Ceph](setup_with_ceph.md)
 
-
 ### Run and Test the Single Node
 
 Once you have finished configuring this single node, start it to test if it runs properly:
@@ -189,14 +200,14 @@ Once you have finished configuring this single node, start it to test if it runs
 cd /data/haiwen/seafile-server-latest
 ./seafile.sh start
 ./seahub.sh start
+
 ```
 
-*Note:* The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.
+_Note:_ The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.
 
-Open your browser, visit http://ip-address-of-this-node:8000 and login with the admin account.
+Open your browser, visit <http://ip-address-of-this-node:8000> and login with the admin account.
 
-
-## <a id="wiki-configure-other-nodes"></a> Configure other nodes
+## Configure other nodes
 
 Now you have one node working fine, let's continue to configure more nodes.
 
@@ -211,11 +222,11 @@ On each node, run `./seafile.sh` and `./seahub.sh` to start Seafile server.
 You'll usually want to use Nginx/Apache and https for web access. You need to set it up on each machine running Seafile server. **Make sure the certificate on all the servers are the same.**
 
 * For Nginx:
-   * [Config Seahub with Nginx](../deploy/deploy_with_nginx.md)
-   * [Enabling Https with Nginx](../deploy/https_with_nginx.md)
+  * [Config Seahub with Nginx](../deploy/deploy_with_nginx.md)
+  * [Enabling Https with Nginx](../deploy/https_with_nginx.md)
 * For Apache:
-   * [Config Seahub with Apache](../deploy/deploy_with_apache.md)
-   * [Enabling Https with Apache](../deploy/https_with_apache.md)
+  * [Config Seahub with Apache](../deploy/deploy_with_apache.md)
+  * [Enabling Https with Apache](../deploy/https_with_apache.md)
 
 ## Start Seafile Service on boot
 
@@ -228,8 +239,7 @@ Beside [standard ports of a seafile server](../deploy/using_firewall.md), there 
 * On each Seafile server machine, you should open the health check port (default 11001);
 * On the memcached server, you should open the port 11211. For security resons only the Seafile servers should be allowed to access this port.
 
-
-## <a id="wiki-lb-settings"></a>Load Balancer Setting
+## Load Balancer Setting
 
 Now that your cluster is already running, fire up the load balancer and welcome your users. Since version 6.0.0, Seafile Pro requires "sticky session" settings in the load balancer. You should refer to the manual of your load balancer for how to set up sticky sessions.
 
@@ -275,11 +285,12 @@ listen seafile 0.0.0.0:80
     cookie SERVERID insert indirect nocache
     server seafileserver01 192.168.1.165:80 check port 11001 cookie seafileserver01
     server seafileserver02 192.168.1.200:80 check port 11001 cookie seafileserver02
+
 ```
 
 ## See how it runs
 
-Now you should be able to test your cluster. Open https://seafile.example.com in your browser and enjoy. You can also synchronize files with Seafile clients.
+Now you should be able to test your cluster. Open <https://seafile.example.com> in your browser and enjoy. You can also synchronize files with Seafile clients.
 
 If the above works, the next step would be [Enable search and background tasks in a cluster](enable_search_and_background_tasks_in_a_cluster.md).
 
@@ -293,6 +304,7 @@ For **seafile.conf**:
 [cluster]
 enabled = true
 memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
+
 ```
 
 The `enabled` option will prevent the start of background tasks by `./seafile.sh start` in the front-end node. The tasks should be explicitly started by `./seafile-background-tasks.sh start` at the back-end node.
@@ -303,6 +315,7 @@ For **seahub_settings.py**:
 AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 
 OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>'
+
 ```
 
 For **seafevents.conf**:
@@ -324,6 +337,7 @@ max-pages = 50
 ## the max size of documents allowed to be previewed online, in MB. Default is 10 MB
 ## Previewing a large file (for example >30M) online is likely going to freeze the browser.
 max-size = 10
+
 ```
 
 The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled. The `external_es_server = true` is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.

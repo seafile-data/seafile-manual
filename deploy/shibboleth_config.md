@@ -1,13 +1,14 @@
-> This document is for Seafile Server version lower than 6.3, if the server version is 6.3 or above, please refer to [this document](https://manual.seafile.com/deploy/shibboleth_config_v6.3.html).
 
+
+> This document is for Seafile Server version lower than 6.3, if the server version is 6.3 or above, please refer to [this document](https://manual.seafile.com/deploy/shibboleth_config_v6.3.html).
 
 ## Overview
 
 [Shibboleth](https://shibboleth.net/) is a widely used single sign on (SSO) protocol. Seafile server (Community Edition >= 4.1.0, Pro Edition >= 4.0.6) supports authentication via Shibboleth. It allows users from another organization to log in to Seafile without registering an account on the service provider.
 
-In this documentation, we assume the reader is familiar with Shibboleth installation and configuration. For introduction to Shibboleth concepts, please refer to https://wiki.shibboleth.net/confluence/display/SHIB2/UnderstandingShibboleth .
+In this documentation, we assume the reader is familiar with Shibboleth installation and configuration. For introduction to Shibboleth concepts, please refer to <https://wiki.shibboleth.net/confluence/display/SHIB2/UnderstandingShibboleth> .
 
-Shibboleth Service Provider (SP) should be installed on the same server as the Seafile server. The official SP from https://shibboleth.net/ is implemented as an Apache module. The module handles all Shibboleth authentication details. Seafile server receives authentication information (username) from fastcgi. The username then can be used as login name for the user.
+Shibboleth Service Provider (SP) should be installed on the same server as the Seafile server. The official SP from <https://shibboleth.net/> is implemented as an Apache module. The module handles all Shibboleth authentication details. Seafile server receives authentication information (username) from fastcgi. The username then can be used as login name for the user.
 
 Seahub provides a special URL to handle Shibboleth login. The URL is `https://your-server/shib-login`. Only this URL needs to be configured under Shibboleth protection. All other URLs don't go through the Shibboleth module. The overall workflow for a user to login with Shibboleth is as follows:
 
@@ -28,8 +29,8 @@ The configuration includes 3 steps:
 
 Installation and configuration of Shibboleth is out of the scope of this documentation. Here are a few references:
 
-* For RedHat and SUSE: https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxInstall
-* For Ubuntu: http://bradleybeddoes.com/2011/08/12/installing-a-shibboleth-2-sp-in-ubuntu-11-04-within-virtualbox/
+* For RedHat and SUSE: <https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxInstall>
+* For Ubuntu: <http://bradleybeddoes.com/2011/08/12/installing-a-shibboleth-2-sp-in-ubuntu-11-04-within-virtualbox/>
 
 Please note that you don't have to follow the Apache configurations in the above links. Just use the Apache config we provide in the next section.
 
@@ -95,7 +96,7 @@ You should create a new virtual host configuration for Shibboleth.
 
 ```
 
-After restarting Apache, you should be able to get the Service Provider metadata by accessing https://seafile.example.com/Shibboleth.sso/Metadata . This metadata should be uploaded to the Identity Provider (IdP) server.
+After restarting Apache, you should be able to get the Service Provider metadata by accessing <https://seafile.example.com/Shibboleth.sso/Metadata> . This metadata should be uploaded to the Identity Provider (IdP) server.
 
 ## Configure Seahub
 
@@ -104,6 +105,7 @@ Seahub extracts the username from the `REMOTE_USER` environment variable. So you
 ```
     <ApplicationDefaults entityID="https://your-server/shibboleth"
         REMOTE_USER="xxxx">
+
 ```
 
 In Seafile, only one of the following two attributes can be used for username: `eppn`, and `mail`. `eppn` stands for "Edu Person Principal Name". It is usually the UserPrincipalName attribute in Active Directory. It's not necessarily a valid email address. `mail` is the user's email address. You should set `REMOTE_USER` to either one of these attributes.
@@ -126,14 +128,15 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     # Change eppn to mail if you use mail attribute for REMOTE_USER
     "eppn": (False, "username"),
 }
+
 ```
 
 Since version 5.0, Seahub can process additional user attributes from Shibboleth. These attributes are saved into Seahub's database, as user's properties. They're all not mandatory. The internal user properties Seahub now supports are:
 
-- givenname
-- surname
-- contact_email: used for sending notification email to user if username is not a valid email address (like eppn).
-- institution: used to identify user's institution
+* givenname
+* surname
+* contact_email: used for sending notification email to user if username is not a valid email address (like eppn).
+* institution: used to identify user's institution
 
 You can specify the mapping between Shibboleth attributes and Seahub's user properties in seahub_settings.py:
 
@@ -145,9 +148,10 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     "mail": (False, "contact_email"),
     "organization": (False, "institution"),
 }
+
 ```
 
-In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. ***Note that you may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP.***
+In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. **_Note that you may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP._**
 
 Since version 5.1.1, we added an option `SHIB_ACTIVATE_AFTER_CREATION` (defaults to `True`) which control the user status after shibboleth connection. If this option set to `False`, user will be inactive after connection, and system admins will be notified by email to activate that account.
 
@@ -155,9 +159,11 @@ Since version 5.1.1, we added an option `SHIB_ACTIVATE_AFTER_CREATION` (defaults
 
 Shibboleth has a field called affiliation. It is a list like: `employee@uni-mainz.de;member@uni-mainz.de;faculty@uni-mainz.de;staff@uni-mainz.de.`
 
-Since version 6.0.7 pro, we are able to set user role from Shibboleth. Details about user role, please refer to https://manual.seafile.com/deploy_pro/roles_permissions.html
+Since version 6.0.7 pro, we are able to set user role from Shibboleth. Details about user role, please refer to <https://download.seafile.com/published/seafile-manual/deploy_pro/roles_permissions.md>
+
 
 To enable this, modify `SHIBBOLETH_ATTRIBUTE_MAP` above and add `Shibboleth-affiliation` field, you may need to change `Shibboleth-affiliation` according to your Shibboleth SP attributes.
+
 ```
 SHIBBOLETH_ATTRIBUTE_MAP = {
     "eppn": (False, "username"),
@@ -167,6 +173,7 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     "organization": (False, "institution"),
     "Shibboleth-affiliation": (False, "affiliation"),
 }
+
 ```
 
 Then add new config to define affiliation role map, 
@@ -184,6 +191,7 @@ SHIBBOLETH_AFFILIATION_ROLE_MAP = {
         ('*', 'guest'),
     ),
 }
+
 ```
 
 After Shibboleth login, Seafile should calcualte user's role from affiliation and SHIBBOLETH_AFFILIATION_ROLE_MAP.
