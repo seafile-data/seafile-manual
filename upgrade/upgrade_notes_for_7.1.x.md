@@ -120,4 +120,18 @@ For Seafdav, the configuration of Apache is as follows:
 
 ```
 
+## FAQ
+
+### SQL Error during upgrade
+
+The upgrade script will try to create a missing table and remove an used index. The following SQL errors are jus warnings and can be ignored:
+
+```
+[INFO] updating seahub database...
+/opt/seafile/seafile-server-7.1.1/seahub/thirdpart/pymysql/cursors.py:170: Warning: (1050, "Table 'base_reposecretkey' already exists")
+  result = self._query(query)
+[WARNING] Failed to execute sql: (1091, "Can't DROP 'drafts_draft_origin_file_uuid_7c003c98_uniq'; check that column/key exists")
+
+```
+
 
