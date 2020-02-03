@@ -90,8 +90,8 @@ CUSTOM_NAV_ITEMS = [
 
 ```
 
-**Note: The **`icon` **field currently only supports icons in Seafile that begin with **`sf2-icon`**. You can find the list of icons here: **<https://github.com/haiwen/seahub/blob/7.0/media/css/seahub.css#L146>****
+**Note: The **`icon` **field currently only supports icons in Seafile that begin with **`sf2-icon`**. You can find the list of icons here: **<https://github.com/haiwen/seahub/blob/7.0/media/css/seahub.css#L146>
 
-Then restart the seahub service to take effect.
+Then restart the Seahub service to take effect.
 
 Once you log in to the Seafile system homepage again, you will see the new navigation entry under the `Tools` navigation bar on the left.
