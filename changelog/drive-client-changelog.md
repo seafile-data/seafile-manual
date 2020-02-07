@@ -1,12 +1,18 @@
 # SeaDrive Client Changelog
 
+### 1.0.11 (2020/02/07)
+
+* Fix a bug that logout and login will lead to file deletion
+* Fix a bug for Mac client single sign on
+
 ### 1.0.10 (2019/12/23)
 
 * Fix a bug that sometimes SeaDrive is empty when network unavailable
 * Fix generating too many tokens when library downloading failed
 * Fix sometimes files should be ignored are uploaded
 * Automatically re-sync a library if local metadata is broken
-* \[Max] Fix support for Mac 10.15
+* \[mac] Add support for MacOS 10.15
+* \[mac] Drop support for Mac 10.12 and earlier
 
 ### 1.0.8 (2019/11/05)
 
