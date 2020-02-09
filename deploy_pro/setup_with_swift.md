@@ -1,15 +1,16 @@
 # Setup With OpenStack Swift
 
-**Note**: Since Seafile Server 5.0.0, all config files are moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 Seafile supports OpenStack Swift as storage backend since 5.1.0. This backend uses the native Swift API. Previously users can only use the S3-compatibility layer of Swift. That way is obsolete now. The old documentation is still available [here](setup_with_openstackswift.md).
+
+Since version 6.3, OpenStack Swift v3.0 API is supported.
 
 ## Prepare
 
 To setup Seafile Professional Server with Swift:
 
-- Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](download_and_setup_seafile_professional_server.md)
-- Install and configure memcached. For best performance, Seafile requires install memcached and enable memcache for objects. We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
+* Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](download_and_setup_seafile_professional_server.md)
+* Install and configure memcached. For best performance, Seafile requires install memcached and enable memcache for objects. We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
+
 
 ```
 # Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
@@ -17,6 +18,7 @@ To setup Seafile Professional Server with Swift:
 # memory
 # -m 64
 -m 128
+
 ```
 
 ## Modify Seafile.conf
@@ -31,7 +33,7 @@ user_name = user
 password = secret
 container = seafile-blocks
 auth_host = 192.168.56.31:5000
-auth_ver = v2.0
+auth_ver = v3.0
 region = yourRegion
 memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
 
@@ -42,7 +44,7 @@ user_name = user
 password = secret
 container = seafile-commits
 auth_host = 192.168.56.31:5000
-auth_ver = v2.0
+auth_ver = v3.0
 region = yourRegion
 memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
 
@@ -53,9 +55,10 @@ user_name = user
 password = secret
 container = seafile-fs
 auth_host = 192.168.56.31:5000
-auth_ver = v2.0
+auth_ver = v3.0
 region = yourRegion
 memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
+
 ```
 
 The above config is just an example. You should replace the options according to your own environment.
@@ -65,16 +68,6 @@ Seafile supports Swift with Keystone as authentication mechanism. The `auth_host
 Seafile also supports Tempauth and Swauth since professional edition 6.2.1. The `auth_ver` option should be set to `v1.0`, `tenant` and `region` are no longer needed.
 
 It's recommended to create separate containers for commit, fs, and block objects.
-
-### Using memcached cluster
-
-In a cluster environment, you may want to use a memcached cluster. In the above configuration, you have to specify all the memcached server node addresses in seafile.conf
-
-```
-memcached_options = --SERVER=192.168.1.134 --SERVER=192.168.1.135 --SERVER=192.168.1.136 --POOL-MIN=10 --POOL-MAX=100 --RETRY-TIMEOUT=3600
-```
-
-Notice that there is a `--RETRY-TIMEOUT=3600` option in the above config. This option is important for dealing with memcached server failures. After a memcached server in the cluster fails, Seafile server will stop trying to use it for "RETRY-TIMEOUT" (in seconds). You should set this timeout to relatively long time, to prevent Seafile from retrying the failed server frequently, which may lead to frequent request errors for the clients.
 
 ### Use HTTPS connections to Swift
 
@@ -95,6 +88,7 @@ use_https = true
 name = swift
 ......
 use_https = true
+
 ```
 
 Because the server package is built on CentOS 6, if you're using Debian/Ubuntu, you have to copy the system CA bundle to CentOS's CA bundle path. Otherwise Seafile can't find the CA bundle so that the SSL connection will fail.
@@ -103,8 +97,9 @@ Because the server package is built on CentOS 6, if you're using Debian/Ubuntu, 
 sudo mkdir -p /etc/pki/tls/certs
 sudo cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
 sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
+
 ```
 
-## Run and Test ##
+## Run and Test
 
 Now you can start Seafile by `./seafile.sh start` and `./seahub.sh start` and visit the website.
