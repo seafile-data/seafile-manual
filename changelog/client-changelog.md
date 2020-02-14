@@ -2,6 +2,13 @@
 
 ## 7.0
 
+### 7.0.6 (2020/02/14)
+
+* Enable to config block size at the client side
+* Do not refresh explorer when restart
+* Can clean sync error records in sync errors dialog
+* \[fix] Do not popup the sync errors dialog when click a sync notification popup
+
 ### 7.0.5 (2020/01/14)
 
 * Fix some right click menu do not work
