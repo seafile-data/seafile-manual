@@ -15,13 +15,15 @@
 * Fix "View on cloud" function
 * Fix sign in file name break "view file history"
 * Support get upload link for folders
-* \[Mac] Fix SSO in Mac 10.15
+* \[mac] Fix SSO in MacOS 10.15
 
 ### 7.0.4 (2019/11/20)
 
 * Fix showing syncing error "!" in the system tray icon after restarting the client
 * Don't clean modified files in cloud file browser
 * Improve seaf-cli
+* \[mac] Add support for MacOS 10.15
+* \[mac] Drop support for MacOS 10.12, 10.11 and 10.11
 
 ### 7.0.3 (2019/10/31)
 
