@@ -3,7 +3,7 @@
 ### 1.0.11 (2020/02/07)
 
 * Fix a bug that logout and login will lead to file deletion
-* Fix a bug for Mac client single sign on
+* \[mac] Fix a bug in SSO
 
 ### 1.0.10 (2019/12/23)
 
@@ -12,7 +12,7 @@
 * Fix sometimes files should be ignored are uploaded
 * Automatically re-sync a library if local metadata is broken
 * \[mac] Add support for MacOS 10.15
-* \[mac] Drop support for Mac 10.12 and earlier
+* \[mac] Drop support for MacOS 10.12
 
 ### 1.0.8 (2019/11/05)
 

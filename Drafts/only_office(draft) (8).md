@@ -42,13 +42,6 @@ You can now set up automatic save by changing the configuration of OnlyOffice.
 
 You can get more info in OnlyOffice's official document: https\://api.onlyoffice.com/editors/save
 
-**NOTE**：To avoid the problem of having to change the configuration file every time the _documentserver_ container is restarted, you can create a locally persistent configuration file `local-production-linux.json` and mount it into _documentserver_ container :
-
-```
--v /local/path/to/local-production-linux.json:/etc/onlyoffice/documentserver/local-production-linux.json
-
-```
-
 ## Configure Seafile Server
 
 > For OnlyOffice is deployed in a separate machine with a different domain.
@@ -88,7 +81,7 @@ URL example for OnlyOffice: <https://seafile.domain.com/onlyofficeds>
 
 **The subfolder page is only important for communication between Seafile and the DocumentServer, there is nothing except the welcome page (e.g. no overview or settings). Users will need access to it though for the OnlyOffice document server editor to work properly.**
 
-**`/onlyoffice/`****\*\***\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* cannot be used as subfolder as this path is used for communication between Seafile and Document Server !\*\*
+**`/onlyoffice/`****\*\***\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* cannot be used as subfolder as this path is used for communication between Seafile and Document Server !\*\*
 
 ### Configure Webserver
 
