@@ -2,7 +2,11 @@
 
 ## 7.1
 
-### 7.1.0 Beta (to be released in 2020/02/14)
+**Upgrade**
+
+Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
+
+### 7.1.0 Beta (2020/02/19)
 
 * Rewrite the system admin pages with React
 * Upgrade to Python3

@@ -45,7 +45,7 @@
     * [Importing Groups from LDAP](deploy_pro/ldap_group_sync.md)
     * [Importing Roles from LDAP](deploy_pro/ldap_role_sync.md)
   * Online File Preview and Edit
-    * [Office/PDF Documents Preview](deploy_pro/office_documents_preview.md)
+    * [Office Documents Preview](deploy_pro/office_documents_preview.md)
     * [Office Online Server Integration](deploy_pro/office_web_app.md)
   * [File Search](deploy_pro/details_about_file_search.md)
   * [Virus Scan](deploy_pro/virus_scan.md)
