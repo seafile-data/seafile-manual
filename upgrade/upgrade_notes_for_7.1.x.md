@@ -120,6 +120,10 @@ For Seafdav, the configuration of Apache is as follows:
 
 ```
 
+### Builtin office file preview
+
+
+
 ## FAQ
 
 ### SQL Error during upgrade
