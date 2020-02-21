@@ -122,7 +122,9 @@ For Seafdav, the configuration of Apache is as follows:
 
 ### Builtin office file preview
 
+The implementation of builtin office file preview has been changed. You should update your configuration according to:
 
+<https://download.seafile.com/published/seafile-manual/deploy_pro/office_documents_preview.md#user-content-Version%207.1+>
 
 ## FAQ
 
