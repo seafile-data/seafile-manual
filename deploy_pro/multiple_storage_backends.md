@@ -73,6 +73,14 @@ The JSON file is an array of objects. Each object defines a storage class. The f
 "commits": {"backend": "swift", "tenant": "adminTenant", "user_name": "admin", "password": "openstack", "container": "seafile-fs", "auth_host": "192.168.56.31:5000", "auth_ver": "v2.0"},
 "blocks": {"backend": "swift", "tenant": "adminTenant", "user_name": "admin", "password": "openstack", "container": "seafile-blocks", "auth_host": "192.168.56.31:5000", "auth_ver": "v2.0", "region": "RegionTwo"}
 }
+
+{
+"storage_id": "ceph_storage",
+"name": "ceph Storage",
+"fs": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-fs"},
+"commits": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-commits"},
+"blocks": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-blocks"}
+}
 ]
 
 ```
@@ -81,7 +89,7 @@ As you may have seen, the `commits`, `fs` and `blocks` information syntax is sim
 
 If you use file system as storage for `fs`, `commits` or `blocks`, you have to explicitely provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
-_Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is not supported yet.
+_Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is supported since version 7.0.14.
 
 ## Library Mapping Policies
 
