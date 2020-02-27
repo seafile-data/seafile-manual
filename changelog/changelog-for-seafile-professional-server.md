@@ -6,6 +6,11 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.1 Beta (2020/02/27)
+
+* Fix full text search
+* Fix office file preview in cluster mode
+
 ### 7.1.0 Beta (2020/02/19)
 
 * Rewrite the system admin pages with React
