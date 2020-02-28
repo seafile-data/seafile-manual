@@ -298,6 +298,8 @@ If the above works, the next step would be [Enable search and background tasks i
 
 Here is the summary of configurations at the front-end node that related to cluster setup.
 
+### 7.0 or older versions
+
 For **seafile.conf**:
 
 ```
@@ -343,3 +345,53 @@ max-size = 10
 The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled. The `external_es_server = true` is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.
 
 The `[OFFICE CONVERTER]` section is needed to let the front-end node know the office preview feature is enabled.
+
+### 7.1+
+
+For **seafile.conf**:
+
+```
+[cluster]
+enabled = true
+memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
+
+```
+
+The `enabled` option will prevent the start of background tasks by `./seafile.sh start` in the front-end node. The tasks should be explicitly started by `./seafile-background-tasks.sh start` at the back-end node.
+
+For **seahub_settings.py**:
+
+```
+AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
+
+OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>:6000'
+
+```
+
+For **seafevents.conf**:
+
+```
+[INDEX FILES]
+enabled = true
+interval = 10m
+highlight = fvh     # This configuration is for improving searching speed
+external_es_server = true
+es_host = <IP of background node>
+es_port = 9200
+
+[OFFICE CONVERTER]
+enabled = true
+workers = 1
+## the max size of documents allowed to be previewed online, in MB. Default is 10 MB
+## Previewing a large file (for example >30M) online is likely going to freeze the browser.
+max-size = 10
+host = <ip of node background>
+port = 6000
+
+```
+
+The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled. The `external_es_server = true` is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.
+
+The `[OFFICE CONVERTER]` section is needed to let the front-end node know the office preview feature is enabled.
+
+
