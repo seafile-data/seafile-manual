@@ -22,6 +22,67 @@ Doing maintanence upgrading is simple, you only need to run the script `./upgrad
 
 ## Specific instructions for each version
 
+### From 7.0 to 7.1
+
+In the background node, Seahub no longer need to be started. Nginx is not needed too.
+
+The way of how office converter work is changed. The Seahub in front end nodes directly access a service in background node.
+
+#### For front-end nodes
+
+**seahub_settings.py**
+
+```
+OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>'
+⬇️
+OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>:6000'
+
+```
+
+**seafevents.conf**
+
+```
+[OFFICE CONVERTER]
+enabled = true
+workers = 1
+max-size = 10
+
+⬇️
+[OFFICE CONVERTER]
+enabled = true
+workers = 1
+max-size = 10
+host = <ip of node background>
+port = 6000
+
+```
+
+#### For backend node
+
+**seahub_settings.py is not needed. **But you can leave it unchanged.
+
+**seafevents.conf**
+
+```
+[OFFICE CONVERTER]
+enabled = true
+workers = 1
+max-size = 10
+
+⬇️
+[OFFICE CONVERTER]
+enabled = true
+workers = 1
+max-size = 10
+host = <ip of node background>
+port = 6000
+
+```
+
+### From 6.3 to 7.0
+
+No special upgrade operations.
+
 ### From 6.2 to 6.3
 
 In version 6.2.11, the included Django was upgraded. The memcached configuration needed to be upgraded if you were using a cluster. If you upgrade from a version below 6.1.11, don't forget to change your memcache configuration. If the configuration in your `seahub_settings.py` is:
@@ -35,6 +96,7 @@ CACHES = {
 }
 
 COMPRESS_CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
+
 ```
 
 Now you need to change to:
@@ -50,6 +112,7 @@ CACHES = {
     },
 }
 COMPRESS_CACHE_BACKEND = 'locmem'
+
 ```
 
 ### From 6.1 to 6.2
@@ -60,7 +123,6 @@ No special upgrade operations.
 
 In version 6.1, we upgraded the included ElasticSearch server. The old server listen on port 9500, new server listen on port 9200. Please change your firewall settings.
 
-
 ### From 5.1 to 6.0
 
 In version 6.0, the folder download mechanism has been updated. This requires that, in a cluster deployment, seafile-data/httptemp folder must be in an NFS share. You can make this folder a symlink to the NFS share.
@@ -68,10 +130,10 @@ In version 6.0, the folder download mechanism has been updated. This requires th
 ```
 cd /data/haiwen/
 ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
+
 ```
 
 The httptemp folder only contains temp files for downloading/uploading file on web UI. So there is no reliability requirement for the NFS share. You can export it from any node in the cluster.
-
 
 ### From v5.0 to v5.1
 
@@ -80,6 +142,7 @@ Because Django is upgraded to 1.8, the COMPRESS_CACHE_BACKEND should be changed
 ```
    -    COMPRESS_CACHE_BACKEND = 'locmem://'
    +    COMPRESS_CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
+
 ```
 
 ### From v4.4 to v5.0
@@ -88,13 +151,20 @@ v5.0 introduces some database schema change, and all configuration files (ccnet.
 
 Perform the following steps to upgrade:
 
-- Run the upgrade script at one fronend node to upgrade the database.
+* Run the upgrade script at one fronend node to upgrade the database.
+
+
 ```
 ./upgrade/upgrade_4.4_5.0.sh
+
 ```
-- Then, on all other frontend nodes and the background node, run the upgrade script with `SEAFILE_SKIP_DB_UPGRADE` environmental variable turned on:
+
+* Then, on all other frontend nodes and the background node, run the upgrade script with `SEAFILE_SKIP_DB_UPGRADE` environmental variable turned on:
+
+
 ```
 SEAFILE_SKIP_DB_UPGRADE=1 ./upgrade/upgrade_4.4_5.0.sh
+
 ```
 
 After the upgrade, you should see the configuration files has been moved to the conf/ folder.
@@ -106,8 +176,8 @@ conf/
   |__ seafevent.conf
   |__ seafdav.conf
   |__ seahub_settings.conf
-```
 
+```
 
 ### From v4.3 to v4.4
 
@@ -130,3 +200,5 @@ Perform the following steps to upgrade:
 3. Run the minor upgrade script at frontend and backend nodes
 4. Delete the old search index (the folder pro-data/search) at the backend node
 5. Delete the old office preview output folder (/tmp/seafile-office-output) at the backend node
+
+

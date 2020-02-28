@@ -7,39 +7,47 @@ The following document is tested with Ubuntu 16.04 and CentOS 7. We recommend th
 Now when we release a new version, we will always provide 2 compressed files, for example:
 
 * _seafile-pro-server_7.0.7_x86-64_Ubuntu.tar.gz_, is compiled in Ubuntu 16.04 enviroment.
-* _seafile-pro-server_7.0.7_x86-64_CentOS.tar.gz_, is compiled in CentOS 7 enviroment.
+* _seafile-pro-server_7.0.7_x86-64.tar.gz_, is compiled in CentOS 7 enviroment.
 
-If you are using Ubuntu 16.04/Debian server, please use _seafile-pro-server_7.0.7_x86-64_Ubuntu.tar.gz_, for CentOS 7 please use _seafile-pro-server_7.0.7_x86-64_CentOS.tar.gz_.
+If you are using Ubuntu 16.04/Debian server, please use _seafile-pro-server_7.0.7_x86-64_Ubuntu.tar.gz_, for CentOS 7 please use _seafile-pro-server_7.0.7_x86-64.tar.gz_.
 
 ### Install thirdpart Requirements
 
-For Ubuntu 16.04:
+The Seafile server package requires the following packages to be installed on your system:
+
+**For Seafile 7.0.x**
 
 ```
-sudo apt-get install openjdk-8-jre poppler-utils libpython2.7 python-pip \
-mysql-server python-setuptools python-mysqldb python-memcache python-ldap \
-python-urllib3
-
-sudo pip install boto requests
-sudo pip install Pillow==4.3.0
-sudo pip install moviepy  # used in movie file thumbnails
-sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
+# on Ubuntu 16.04
+apt-get update
+apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
 
 ```
 
-For CentOS 7:
+```
+# on CentOS 7
+yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 
 ```
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo yum install java-1.8.0-openjdk poppler-utils python-setuptools \
-MySQL-python mariadb-server python-memcached python-ldap \
-python-urllib3
 
-sudo pip install boto requests
-sudo pip install Pillow==4.3.0
-sudo pip install moviepy  # used in movie file thumbnails
-sudo /etc/init.d/mysqld start
+**For Seafile 7.1.x**
+
+```
+# on Debian 10/Ubuntu 18.04
+apt-get update
+apt-get install python3 python3-setuptools python3-pip python3-ldap -y
+﻿
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+    django-pylibmc django-simple-captcha
+
+```
+
+```
+# on CentOS 8
+yum install python3 python3-setuptools python3-pip python3-ldap -y
+﻿
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+    django-pylibmc django-simple-captcha
 
 ```
 
