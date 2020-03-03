@@ -75,7 +75,6 @@
   * Advanced Maintenance Tools
     * [Real-time Backup Server](deploy_pro/real_time_backup.md)
     * [Import Directory To Seafile](deploy_pro/seaf_import.md)
-  * [Web Resumable File Upload](deploy_pro/web_resumable_upload.md)
   * [License](deploy_pro/seafile_professional_sdition_software_license_agreement.md)
 * Deploy Seafile with Docker
   * [Deploy Seafile with Docker](<docker/deploy seafile with docker.md>)
