@@ -10,6 +10,15 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.2 beta (2020/03/05)
+
+* \[fix] Fix HTTP/2 support
+* Markdown page can now be printed using browser's "Print..."
+* Add zoom buttons for PDF page
+* Add sort function for directory share link page
+* Support using JWT in OnlyOffice integration
+* UI improvements for pages in admin panel
+
 ### 7.1.1 beta (2019/12/23)
 
 * \[fix] Fix Gunicorn warning
