@@ -25,6 +25,12 @@ Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch
 
 Please check our document for how to upgrade to 7.0: <https://download.seafile.com/published/support/server-upgrade/pro-7.0.md>
 
+### 7.0.14 (2020/03/06)
+
+* \[fix] Fix seaf-server crash problem when calculating library size for a corrupted library
+* \[fix] Fix a bug when sending file update notice
+* Write virus scan log to file virus_scan.log
+
 ### 7.0.13 (2020/01/16)
 
 * Fix Shibboleth login bug (added in 7.0.12)
