@@ -55,7 +55,7 @@ To enable this feature, you should:
 
    ```
 
-2. Config Seahub_settings:
+2. Config seahub_settings.py:
 
    ```
    ONLYOFFICE_JWT_SECRET = 'your secret string'
@@ -66,16 +66,30 @@ To enable this feature, you should:
 
    ```
    ...
-   "secret": {
-     "inbox": {
-       "string": "your secret string"
-     },
-     "outbox": {
-       "string": "your secret string"
-     },
-     "session": {
-       "string": "secret"
-     }
+   {
+       "services": {
+           "CoAuthoring": {
+               ...
+               "secret": {
+                   "inbox": {
+                       "string": "your secret string"
+                   },
+                   "outbox": {
+                       "string": "your secret string"
+                   },
+               },
+               "token": {
+                   "enable": {
+                       "browser": true,
+                       "request": {
+                           "inbox": true,
+                           "outbox": true
+                       }
+                   }
+               }
+               ...
+           }
+       }
    }
    ...     
 
@@ -131,7 +145,7 @@ URL example for OnlyOffice: <https://seafile.domain.com/onlyofficeds>
 
 **The subfolder page is only important for communication between Seafile and the DocumentServer, there is nothing except the welcome page (e.g. no overview or settings). Users will need access to it though for the OnlyOffice document server editor to work properly.**
 
-**`/onlyoffice/`****\*\***\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* cannot be used as subfolder as this path is used for communication between Seafile and Document Server !\*\*
+**`/onlyoffice/`****\*\***\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* cannot be used as subfolder as this path is used for communication between Seafile and Document Server !\*\*
 
 ### Configure Webserver
 
