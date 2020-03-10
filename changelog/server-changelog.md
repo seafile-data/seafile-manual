@@ -15,8 +15,8 @@ Please check our document for how to upgrade to 7.1: <https://download.seafile.c
 * \[fix] Fix HTTP/2 support
 * Markdown page can now be printed using browser's "Print..."
 * Add zoom buttons for PDF page
-* Add sort function for directory share link page
-* Support using JWT in OnlyOffice integration
+* Add sort function to directory share link page
+* Add support for JSON web tokens in OnlyOffice integration
 * UI improvements for pages in admin panel
 
 ### 7.1.1 beta (2019/12/23)
