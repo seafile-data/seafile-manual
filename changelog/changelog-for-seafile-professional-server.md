@@ -1,5 +1,7 @@
 # Seafile Professional Server Changelog
 
+> You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
+
 ## 7.1
 
 **Upgrade**
