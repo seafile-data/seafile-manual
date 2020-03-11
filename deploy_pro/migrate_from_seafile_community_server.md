@@ -151,7 +151,7 @@ RoleQuota
 
 ```
 
-For the table statement, please query [table statement](./seafile-sql.md).
+For the table statement, please check [table statement](./seafile-sql.md).
 
 ### Start Seafile Professional Server
 
