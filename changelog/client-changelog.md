@@ -23,7 +23,7 @@
 * Don't clean modified files in cloud file browser
 * Improve seaf-cli
 * \[mac] Add support for MacOS 10.15
-* \[mac] Drop support for MacOS 10.12, 10.11 and 10.11
+* \[mac] Drop support for MacOS 10.12, 10.11 and 10.10
 
 ### 7.0.3 (2019/10/31)
 
