@@ -12,6 +12,13 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.3 (2020/03/26)
+
+* Support sort libraries by size and number of files in admin panel
+* Support sort users by used storage in admin panel
+* \[fix] Fix Markdown print for markdown with more than 1 page
+* Other UI fixes
+
 ### 7.1.2 beta (2020/03/05)
 
 * \[fix] Fix HTTP/2 support
