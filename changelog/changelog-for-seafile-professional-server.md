@@ -27,6 +27,17 @@ Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch
 
 Please check our document for how to upgrade to 7.0: <https://download.seafile.com/published/support/server-upgrade/pro-7.0.md>
 
+### 7.0.16 (2020/04/01)
+
+* Add progress dialog when moving files across libraries
+* Add more customization options (EXTRA_SHARE_DIALOG_NOTE, EXTRA_APP_BOTTOM_LINKS, EXTRA_ABOUT_DIALOG_LINKS)
+* \[fix] Fix a bug with domain-name that contains "file" when previewing markdown file via share link
+* \[fix] Do not show download link for a preview-only share link
+* \[fix] Fix searching files in a public library for login users
+* Some UI improvements
+
+### 7.0.15 (Deprecated)
+
 ### 7.0.14 (2020/03/06)
 
 * \[fix] Fix seaf-server crash problem when calculating library size for a corrupted library
