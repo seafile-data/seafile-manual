@@ -68,7 +68,23 @@ cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html te
 
 Modify the `templates/help/install.html` file and save it. You will see the new help page.
 
-## Add custom navigation
+## Add an extra note in sharing dialog
+
+You can add an extra note in sharing dialog in seahub_settings.py
+
+```
+EXTRA_SHARE_DIALOG_NOTE = {
+  'title': 'Attention! Read before shareing files:',
+  'content': 'Do not share personal or confidential official data with **.'
+ }
+
+```
+
+Result:
+
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712416075.png?raw=1" height="null" width="386" />
+
+## Add custom navigation items
 
 Since Pro 7.0.9, Seafile supports adding some custom navigation entries to the home page for quick access. This requires you to add the following configuration information to the `conf/seahub_settings.py` configuration file:
 
@@ -95,3 +111,33 @@ CUSTOM_NAV_ITEMS = [
 Then restart the Seahub service to take effect.
 
 Once you log in to the Seafile system homepage again, you will see the new navigation entry under the `Tools` navigation bar on the left.
+
+## Add more links to the bottom bar
+
+```
+EXTRA_APP_BOTTOM_LINKS = {
+    'seafile': 'https://example.seahub.com/seahub',
+    'dtable-web': 'https://example.seahub.com/web'
+}
+
+```
+
+Result:
+
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712569569.png?raw=1" height="null" width="586" />
+
+
+
+## Add more links to about dialog
+
+```
+EXTRA_ABOUT_DIALOG_LINKS = {
+    'seafile': 'https://example.seahub.com/seahub',
+    'dtable-web': 'https://example.seahub.com/dtable-web'
+}
+
+```
+
+Result:
+
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712631552.png?raw=1" height="null" width="610" />
