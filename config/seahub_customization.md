@@ -73,7 +73,7 @@ Modify the `templates/help/install.html` file and save it. You will see the new 
 You can add an extra note in sharing dialog in seahub_settings.py
 
 ```
-EXTRA_SHARE_DIALOG_NOTE = {
+ADDITIONAL_SHARE_DIALOG_NOTE = {
   'title': 'Attention! Read before shareing files:',
   'content': 'Do not share personal or confidential official data with **.'
  }
@@ -82,7 +82,7 @@ EXTRA_SHARE_DIALOG_NOTE = {
 
 Result:
 
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712416075.png?raw=1" height="null" width="386" />
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712416075.png?raw=1" width="386" height="null" />
 
 ## Add custom navigation items
 
@@ -115,7 +115,7 @@ Once you log in to the Seafile system homepage again, you will see the new navig
 ## Add more links to the bottom bar
 
 ```
-EXTRA_APP_BOTTOM_LINKS = {
+ADDITIONAL_APP_BOTTOM_LINKS = {
     'seafile': 'https://example.seahub.com/seahub',
     'dtable-web': 'https://example.seahub.com/web'
 }
@@ -124,14 +124,12 @@ EXTRA_APP_BOTTOM_LINKS = {
 
 Result:
 
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712569569.png?raw=1" height="null" width="586" />
-
-
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712569569.png?raw=1" width="586" height="null" />
 
 ## Add more links to about dialog
 
 ```
-EXTRA_ABOUT_DIALOG_LINKS = {
+ADDITIONAL_ABOUT_DIALOG_LINKS = {
     'seafile': 'https://example.seahub.com/seahub',
     'dtable-web': 'https://example.seahub.com/dtable-web'
 }
@@ -140,4 +138,4 @@ EXTRA_ABOUT_DIALOG_LINKS = {
 
 Result:
 
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712631552.png?raw=1" height="null" width="610" />
+<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712631552.png?raw=1" width="610" height="null" />
