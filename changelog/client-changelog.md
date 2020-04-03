@@ -2,6 +2,13 @@
 
 ## 7.0
 
+### 7.0.7 (2020/04/03)
+
+* Use new API to copy/move files from one library to another in cloud file browser
+* \[fix] Fix SSO problem after logout and login again
+* \[mac] Ignore files start with `._ ` 
+* \[fix] Fix deleting of multiple sync error logs
+
 ### 7.0.6 (2020/02/14)
 
 * Enable to config block size at the client side

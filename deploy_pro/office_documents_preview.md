@@ -100,7 +100,14 @@ sudo apt-get install libreoffice libreoffice-script-provider-python
 
 > For older version of Ubuntu: `sudo apt-get install libreoffice python-uno`
 
-On Centos/RHEL, you need to first remove the default libreoffice in the distribution, then install version 6.4 or newer ([Installation of LibreOffice on Linux](https://wiki.documentfoundation.org/Documentation/Install/Linux#Terminal-Based_Install)).
+On Centos/RHEL, you need to first remove the default libreoffice in the distribution:
+
+```
+yum remove --setopt=clean_requirements_on_remove=0 libreoffice-* 
+
+```
+
+Then install version 6.4 or newer ([Installation of LibreOffice on Linux](https://wiki.documentfoundation.org/Documentation/Install/Linux#Terminal-Based_Install)).
 
 Also, you may need to install fonts for your language, especially for Asians, otherwise the office document may not display correctly.
 
