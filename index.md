@@ -33,8 +33,6 @@
     * [Migrate From SQLite to MySQL](deploy/migrate_from_sqlite_to_mysql.md)
   * [Common Problems for Setting up Server](faq.md)
   * [New Directory Layout in Seafile Server 5.0.0](deploy/new_directory_layout_5_0_0.md)
-* [Deploy Seafile under Windows](deploy_windows/deploy_with_windows.md)
-  * [Migrate Seafile From Windows To Linux](deploy_windows/migrate_from_win_to_linux.md)
 * [Deploy Seafile Pro Edition](deploy_pro/README.md)
   * [Download and Setup Seafile Professional Server](deploy_pro/download_and_setup_seafile_professional_server.md)
   * [Deploy Seafile-pro with Docker](deploy_pro/deploy_with_docker.md)
