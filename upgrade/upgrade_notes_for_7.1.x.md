@@ -126,6 +126,17 @@ The implementation of builtin office file preview has been changed. You should u
 
 <https://download.seafile.com/published/seafile-manual/deploy_pro/office_documents_preview.md#user-content-Version%207.1+>
 
+### If you are using Ceph backend
+
+If you are using Ceph storage backend, you need to install new python library.
+
+On Debian/Ubuntu (Seafile 7.1+):
+
+```
+sudo apt-get install python3-rados
+
+```
+
 ## FAQ
 
 ### SQL Error during upgrade

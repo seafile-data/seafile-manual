@@ -8,6 +8,14 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.3 (2020/04/08)
+
+* A library admin can see all the shared links for a library
+* Sort libraries and users in admin panel
+* Delete all the users and libraries in an organization when deleting that organization
+* \[fix] Fix some bugs in multiple storage backend feature
+* Other UI fixes
+
 ### 7.1.1 Beta (2020/02/27)
 
 * Fix full text search
