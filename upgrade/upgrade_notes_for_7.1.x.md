@@ -151,4 +151,24 @@ The upgrade script will try to create a missing table and remove an used index. 
 
 ```
 
+### Internal server error after upgrade to version 7.1
+
+Please check whether the seahub process is running in your server. If it is running, there should be an error log in seahub.log for internal server error.
+
+If seahub process is not running, you can modify conf/gunicorn.conf, change `daemon = True`  to `daemon = False`  , then run ./seahub.sh again. If there are missing Python dependencies, the error will be reported in the terminal.
+
+The most common issue is that you use an old memcache configuration that depends on python-memcache. The new way is
+
+```
+'BACKEND': 'django_pylibmc.memcached.PyLibMCCache'
+
+```
+
+The old way is
+
+```
+'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+
+```
+
 
