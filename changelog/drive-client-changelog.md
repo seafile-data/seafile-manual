@@ -1,5 +1,24 @@
 # SeaDrive Client Changelog
 
+### 2.0.1 for Windows (2020/04/13)
+
+* Fix issues when switching languages
+* Fix issues for legacy Windows "8.3 format" paths
+* Improve speed of creating placeholders
+* Don't add SeaDrive cache folder to Windows search index
+* Use short hash instead of "servername_account" for cache folder name
+* Prevent the old Explorer extension from calling new SeaDrive (avoiding high CPU usage)
+* Fix small issues in encrypted library support
+* Change installation location from "Seafile Ltd" to "Seafile"
+* Add SeaDrive entry to Windows start menu
+* Change "seadrive" to "SeaDrive" in Explorer navigation pane
+* Fix SSO re-login failure
+
+### 2.0.0 for Windows (2020/03/20)
+
+* Use Windows 10 native API to implement the virtual drive
+* Support syncing encrypted libraries
+
 ### 1.0.11 (2020/02/07)
 
 * Fix a bug that logout and login will lead to file deletion
