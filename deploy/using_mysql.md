@@ -108,19 +108,19 @@ yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 ```
 # on Debian 10/Ubuntu 18.04
 apt-get update
-apt-get install python3 python3-setuptools python3-pip python3-ldap -y
+apt-get install python3 python3-setuptools python3-pip -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
-    django-pylibmc django-simple-captcha
+    django-pylibmc django-simple-captcha python3-ldap
 
 ```
 
 ```
 # on CentOS 8
-yum install python3 python3-setuptools python3-pip python3-ldap -y
+yum install python3 python3-setuptools python3-pip -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
-    django-pylibmc django-simple-captcha
+    django-pylibmc django-simple-captcha python3-ldap
 
 ```
 
