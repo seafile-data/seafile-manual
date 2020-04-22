@@ -78,12 +78,11 @@
   * [Deploy Seafile with Docker](<docker/deploy seafile with docker.md>)
   * [Deploy Seafile Pro Edition with Docker](<docker/pro-edition/Deploy Seafile-pro with Docker.md>)
   * [Migrate CE to Pro with Docker](<docker/pro-edition/Migrate CE to Pro with Docker.md>)
-  * Old version before 6.3
-    * [Deploy Seafile with Docker](deploy/deploy_with_docker.md)
-    * [Deploy Seafile Pro Edition with Docker](deploy_pro/deploy_with_docker.md)
   * Upgrade from 6.3 to 7.0
     * [Upgrade Seafile Docker CE](<docker/6.3 upgrade to 7.0.md>)
     * [Upgrade Seafile Docker Pro](<docker/pro-edition/6.3 upgrade to 7.0.md>)
+  * Upgrade for other versions
+    * [7.0 to 7.1](docker/upgrade/7.0_7.1.md)
 * [Configuration and Customization](config/README.md)
   * [ccnet.conf](config/ccnet-conf.md)
   * [seafile.conf](config/seafile-conf.md)
