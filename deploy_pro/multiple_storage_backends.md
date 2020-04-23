@@ -188,4 +188,29 @@ Then you can add option `for_new_library` to the backends which are expected to 
 
 ```
 
+## Multiple Storage Backend Data Migration
+Run the `migrate-repo.sh` script to migrate repo data between different storage backends.
+```
+./migrate-repo.sh repo_id origin_storage_id destination_storage_id
+```
+* repo_id: migrated repo id
 
+* origin_storage_id: migrated origin storage id
+
+* destination_storage_id: migrated destination storage id
+
+Before running the migration script, you can set the `OBJECT_LIST_FILE_PATH` environment variable to specify a path prefix to store the migrated objects.
+
+For example:
+```
+export OBJECT_LIST_FILE_PATH=/opt/test
+```
+This will create three files in the specified path (/opt): `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.fs` `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.commits` `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.blocks`
+Setting the `OBJECT_LIST_FILE_PATH` environment variable has two purposes:
+1. If the migrated repo is very large, you need to run the migration script multiple times. Setting this environment variable can skip the previously migrated objects.
+2. After the migration is complete, if you need to delete the objects in the origin storage, you must set this environment variable.
+### Delete all objects in a repo in the specified storage backend
+Run the `remove-objs.sh` script (before migration, you need to set the OBJECT_LIST_FILE_PATH environment variable) to delete all objects in a repo in the specified storage backend.
+```
+./remove-objs.sh repo_id storage_id
+```
