@@ -137,6 +137,10 @@ sudo apt-get install python3-rados
 
 ```
 
+### Login Page Customization
+
+If you have customized the login page or other html pages, as we have removed some old javascript libraries, your customized pages may not work anymore. Please try to re-customize based on the newest version.
+
 ## FAQ
 
 ### SQL Error during upgrade
