@@ -35,6 +35,11 @@ Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch
 
 Please check our document for how to upgrade to 7.0: <https://download.seafile.com/published/support/server-upgrade/pro-7.0.md>
 
+### 7.0.17 (2020/04/28)
+
+* Fix bug for EXTRA_ABOUT_DIALOG_LINKS
+* Modify the default permission to "Download and preview" for share links
+
 ### 7.0.16 (2020/04/01)
 
 * Add progress dialog when moving files across libraries
