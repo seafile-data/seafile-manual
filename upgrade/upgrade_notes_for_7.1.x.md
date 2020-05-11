@@ -22,7 +22,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   apt-get install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -32,7 +32,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   yum install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -44,7 +44,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   apt-get install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -54,7 +54,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   yum install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
