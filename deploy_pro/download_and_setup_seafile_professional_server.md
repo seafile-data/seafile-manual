@@ -2,14 +2,12 @@
 
 ## Preparation
 
-The following document is tested with Ubuntu 16.04 and CentOS 7. We recommend that use Ubuntu 16.04 or CentOS 7 for your server.
-
 Now when we release a new version, we will always provide 2 compressed files, for example:
 
-* _seafile-pro-server_7.0.7_x86-64_Ubuntu.tar.gz_, is compiled in Ubuntu 16.04 enviroment.
-* _seafile-pro-server_7.0.7_x86-64.tar.gz_, is compiled in CentOS 7 enviroment.
+* _seafile-pro-server_7.1.3_x86-64_Ubuntu.tar.gz_, is compiled in Ubuntu 18.04 enviroment.
+* _seafile-pro-server_7.1.3_x86-64_CentOS.tar.gz_, is compiled in CentOS 7 enviroment.
 
-If you are using Ubuntu 16.04/Debian server, please use _seafile-pro-server_7.0.7_x86-64_Ubuntu.tar.gz_, for CentOS 7 please use _seafile-pro-server_7.0.7_x86-64.tar.gz_.
+If you are using Ubuntu/Debian server, please use _seafile-pro-server_7.1.3_x86-64_Ubuntu.tar.gz_, for CentOS please use _seafile-pro-server_7.1.3_x86-64.tar.gz_.
 
 ### Install thirdpart Requirements
 
@@ -37,7 +35,7 @@ yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 apt-get update
 apt-get install python3 python3-setuptools python3-pip -y
 ﻿
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -46,7 +44,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
 # on CentOS 8
 yum install python3 python3-setuptools python3-pip -y
 ﻿
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy psd-tools \
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
