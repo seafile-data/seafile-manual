@@ -1,4 +1,5 @@
 # Deploy Seahub at Non-root domain
+
 This documentation will talk about how to deploy Seafile Web using Apache/Nginx at Non-root directory of the website(e.g., www.example.com/seafile/). Please note that the file server path will still be e.g. www.example.com/seafhttp (rather than www.example.com/seafile/seafhttp) because this path is hardcoded in the clients.
 
 **Note:** We assume you have read [Deploy Seafile with nginx](deploy_with_nginx.md) or [Deploy Seafile with apache](deploy_with_apache.md).
@@ -14,6 +15,7 @@ COMPRESS_URL = MEDIA_URL
 STATIC_URL = MEDIA_URL + 'assets/'
 SITE_ROOT = '/seafile/'
 LOGIN_URL = '/seafile/accounts/login/'    # NOTE: since version 5.0.4
+
 ```
 
 The webserver will serve static files (js, css, etc), so we just disable `SERVE_STATIC`.
@@ -31,6 +33,7 @@ to let Seafile know the domain you choose.
 
 ```
 SERVICE_URL = http://www.myseafile.com/seafile
+
 ```
 
 Note: If you later change the domain assigned to seahub, you also need to change the value of  `SERVICE_URL`.
@@ -41,9 +44,10 @@ You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_
 
 ```python
 FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
-```
-**Note:** The file server path MUST be `/seafhttp` because this path is hardcoded in the clients.
 
+```
+
+**Note:** The file server path MUST be `/seafhttp` because this path is hardcoded in the clients.
 
 ## Webserver configuration
 
@@ -88,8 +92,8 @@ server {
         root /home/user/haiwen/seafile-server-latest/seahub;
     }
 }
-```
 
+```
 
 ## Deploy with Apache
 
@@ -121,8 +125,10 @@ Here is the sample configuration:
   SetEnvIf Request_URI . proxy-fcgi-pathinfo=unescape
   SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
   ProxyPreserveHost On
-  ProxyPass /seafile fcgi://127.0.0.1:8000/seafile
+  ProxyPass /seafile http://127.0.0.1:8000/seafile
+  ProxyPassReverse /seafile http://127.0.0.1:8000/seafile
 </VirtualHost>
+
 ```
 
 We use Alias to let Apache serve static files, please change the second argument to your path.
@@ -133,6 +139,7 @@ By default, Seahub caches some data like the link to the avatar icon in `/tmp/se
 
 ```
 rm -rf /tmp/seahub_cache/
+
 ```
 
 For memcache users, please purge the cache there instead by restarting your memcached server.
@@ -142,4 +149,7 @@ For memcache users, please purge the cache there instead by restarting your memc
 ```
 ./seafile.sh start
 ./seahub.sh start
+
 ```
+
+
