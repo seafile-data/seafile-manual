@@ -8,6 +8,19 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.4 (2020/05/14)
+
+* \[fix] Fix listing LDAP imported users when number of users is greater than 500
+* \[fix] Fix visiting folder share links with password and default path
+* Use preview-and-download as default permission when generating share links
+* Support selecting and downloading multiple files in a sharing link
+* Show share link expiration time in system admin
+* \[multi-tenancy] Support sorting for users and libraries in organization admin panel
+* FUSE extension now support multiple storage backends
+* \[fix] Fix file download links in public libraries
+* \[fix] fix seaf-backup-cmd.sh
+* Other UI improvements and fixes
+
 ### 7.1.3 (2020/04/08)
 
 * A library admin can see all the shared links for a library
