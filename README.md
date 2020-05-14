@@ -14,11 +14,7 @@ The different components of Seafile project are released under different license
 * Seafile Android client: GPLv3
 * Desktop syncing client: GPLv2
 * Seafile Server core: AGPLv3
-* Seahub (Seafile server Web UI): Apache License v
-
-## About this manual
-
-The "source code" of this manual is hosted on GitHub: <https://github.com/haiwen/seafile-docs>
+* Seahub (Seafile server Web UI): Apache License v2
 
 ## Contact information
 
