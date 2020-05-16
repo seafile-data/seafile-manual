@@ -194,10 +194,11 @@ THUMBNAIL_IMAGE_SIZE_LIMIT = 30 # MB
 
 # Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first.
 # For details, please refer to https://manual.seafile.com/deploy/video_thumbnails.html
-# NOTE: since version 6.1
+# NOTE: this option is deprecated in version 7.1
 ENABLE_VIDEO_THUMBNAIL = False
 
 # Use the frame at 5 second as thumbnail
+# NOTE: this option is deprecated in version 7.1
 THUMBNAIL_VIDEO_FRAME_TIME = 5
 
 # Absolute filesystem path to the directory that will hold thumbnail files.
