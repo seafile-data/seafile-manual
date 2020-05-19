@@ -12,6 +12,15 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.4 (2020/05/19)
+
+* \[fix] Fix page error in "System Admin-> Users -> A User -> Groups"
+* \[fix] Fix listing LDAP imported users when number of users is greater than 500
+* Support selecting and downloading multiple files in a sharing link
+* Show share link expiration time in system admin
+* \[fix] Fix file download links in public libraries
+* Other UI fixes
+
 ### 7.1.3 (2020/03/26)
 
 * Support sort libraries by size and number of files in admin panel
