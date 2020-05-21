@@ -114,7 +114,7 @@ If you want to use your own SSL certificate and the volume directory of Seafile 
   server {
       listen 80;
       server_name example.seafile.com default_server;
-  
+
       location / {
           rewrite ^ https://$host$request_uri? permanent;
       }
@@ -174,7 +174,7 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 * /shared/ssl: This is directory for certificate, which does not exist by default.
 * /shared/bootstrap.conf: This file does not exist by default. You can create it by your self, and write the configuration of files similar to the `samples` folder.
 
-### Upgrading Seafile server
+## Upgrading Seafile server
 
 To upgrade to latest version of seafile server:
 

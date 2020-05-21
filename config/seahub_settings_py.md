@@ -77,7 +77,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Whether to save the session data on every request. Default is `False`
 SESSION_SAVE_EVERY_REQUEST = False
 
-# Whether enable personal wiki and group wiki. Default is `False`
+# Whether enable the feature "published library". Default is `False`
 # Since 6.1.0 CE
 ENABLE_WIKI = True
 
