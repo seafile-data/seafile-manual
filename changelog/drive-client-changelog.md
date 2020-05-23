@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 2.0.2 (2020/05/23)
+
+* \[Mac] Support syncing encrypted libraries
+* \[Win] Support change cache location
+* \[Win] Support using by multiple users
+* \[Win] Other bug fixes
+
 ### 2.0.1 for Windows (2020/04/13)
 
 * Fix issues when switching languages
