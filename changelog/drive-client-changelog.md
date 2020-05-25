@@ -4,7 +4,7 @@
 
 * \[Mac] Support syncing encrypted libraries
 * \[Win] Support change cache location
-* \[Win] Support using by multiple users
+* \[Win] Improve account switching behaviors
 * \[Win] Other bug fixes
 
 ### 2.0.1 for Windows (2020/04/13)
