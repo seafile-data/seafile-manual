@@ -77,9 +77,11 @@ Change upload/download settings.
 ```
 [fileserver]
 # Set maximum upload file size to 200M.
+# If not configured, there is no file size limit for uploading.
 max_upload_size=200
 
 # Set maximum download directory size to 200M.
+# Default is 100M.
 max_download_dir_size=200
 
 ```
