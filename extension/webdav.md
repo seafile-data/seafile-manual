@@ -4,7 +4,76 @@ Seafile WebDAV Server(SeafDAV) is added in seafile server 2.1.0.
 
 In the wiki below, we assume your seafile installation folder is `/data/haiwen`.
 
-## SeafDAV Configuration
+## SeafDAV Configuration for 7.1+
+
+The configuration file is `/data/haiwen/conf/seafdav.conf`. If it is not created already, you can just create the file.
+
+```
+[WEBDAV]
+
+# Default is false. Change it to true to enable SeafDAV server.
+enabled = true
+
+port = 8080
+
+# If you deploy seafdav behind nginx/apache, you need to modify "share_name".
+share_name = /
+
+```
+
+Every time the configuration is modified, you need to restart seafile server to make it take effect.
+
+```
+./seafile.sh restart
+
+```
+
+Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080`
+
+**After Seafile 7.1.x, Seafdav does not support Fastcgi, only Wsgi**. So if you want to configure seafdav behind a proxy server, you have to use proxy configuration instead of fastcgi.
+
+### Proxy with Nginx
+
+For Seafdav, the configuration of Nginx is as follows:
+
+```
+.....
+    location /seafdav {
+        proxy_pass         http://127.0.0.1:8080/seafdav;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout  1200s;
+        client_max_body_size 0;
+﻿
+        access_log      /var/log/nginx/seafdav.access.log seafileformat;
+        error_log       /var/log/nginx/seafdav.error.log;
+    }
+
+```
+
+### Proxy with Apache
+
+For Seafdav, the configuration of Apache is as follows:
+
+```
+......
+    <Location /seafdav>
+        ProxyPass "http://127.0.0.1:8080/seafdav"
+    </Location>
+
+```
+
+### HTTPS proxy
+
+If you configure https in Nginx or Apache, you have to configure the reverse proxy to rewrite the `Destination` header's protocol from 'https\:' to 'http\:'. This is a limitation on the WebDAV framework SeafDAV is based on. See more details:
+
+* <https://forum.seafile.com/t/seafdav-move-command-causing-502/11582>
+* <https://github.com/mar10/wsgidav/issues/183>
+
+## SeafDAV Configuration for 7.0 or older versions
 
 The configuration file is `/data/haiwen/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
@@ -21,14 +90,15 @@ fastcgi = false
 
 # If you deploy seafdav behind nginx/apache, you need to modify "share_name".
 share_name = /
+
 ```
 
 Every time the configuration is modified, you need to restart seafile server to make it take effect.
 
 ```
 ./seafile.sh restart
-```
 
+```
 
 ### Sample Configuration 1: No nginx/apache
 
@@ -40,6 +110,7 @@ enabled = true
 port = 8080
 fastcgi = false
 share_name = /
+
 ```
 
 ### Sample Configuration 2: With Nginx
@@ -52,6 +123,7 @@ enabled = true
 port = 8080
 fastcgi = true
 share_name = /seafdav
+
 ```
 
 In the above config, the value of '''share_name''' is changed to '''/seafdav''', which is the address suffix you assign to seafdav server.
@@ -87,11 +159,12 @@ The corresponding Nginx configuration is (without https):
         access_log      /var/log/nginx/seafdav.access.log;
         error_log       /var/log/nginx/seafdav.error.log;
     }
+
 ```
 
 #### Nginx with HTTPS
 
-Nginx conf with https:
+Nginx conf with https\:
 
 ```
      location /seafdav {
@@ -122,6 +195,7 @@ Nginx conf with https:
         access_log      /var/log/nginx/seafdav.access.log;
         error_log       /var/log/nginx/seafdav.error.log;
     }
+
 ```
 
 By default Nginx will buffer large request body in temp file. After the body is completely received, Nginx will send the body to the upstream server (seafdav in our case). But it seems when file size is very large, the buffering mechanism dosen't work well. It may stop proxying the body in the middle. So if you want to support file upload larger for 4GB, we suggest you install Nginx version >= 1.8.0 and add `proxy_request_buffering off` to Nginx configuration.
@@ -138,6 +212,7 @@ enabled = true
 port = 8080
 fastcgi = false
 share_name = /seafdav
+
 ```
 
 In the above config, the value of '''share_name''' is changed to '''/seafdav''', which is the address suffix you assign to seafdav server. **Note that we do not use fastcgi for Apache.**
@@ -186,6 +261,7 @@ Based on your apache configuration when you [deploy Seafile with Apache](,,/depl
     ProxyPass / fcgi://127.0.0.1:8000/
 
 </virtualhost>
+
 ```
 
 #### Apache with HTTPS
@@ -233,21 +309,24 @@ Based on your apache configuration when you [Enable Https on Seafile web with Ap
   ProxyPass / fcgi://127.0.0.1:8000/
 
 </virtualhost>
+
 ```
 
 ## Notes on Clients
 
 Please first note that, there are some known performance limitation when you map a Seafile webdav server as a local file system (or network drive).
-- Uploading large number of files at once is usually much slower than the syncing client. That's because each file needs to be committed separately.
-- The access to the webdav server may be slow sometimes. That's because the local file system driver sends a lot of unnecessary requests to get the files' attributes.
+
+* Uploading large number of files at once is usually much slower than the syncing client. That's because each file needs to be committed separately.
+* The access to the webdav server may be slow sometimes. That's because the local file system driver sends a lot of unnecessary requests to get the files' attributes.
 
 So WebDAV is more suitable for infrequent file access. If you want better performance, please use the sync client instead.
 
 ### Windows
 
 The client recommendation for WebDAV depends on your Windows version:
-- For Windows XP: Only non-encryped HTTP connection is supported by the Windows Explorer. So for security, the only viable option is to use third-party clients, such as Cyberduck or Bitkinex.
-- For Vista and later versions: Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.
+
+* For Windows XP: Only non-encryped HTTP connection is supported by the Windows Explorer. So for security, the only viable option is to use third-party clients, such as Cyberduck or Bitkinex.
+* For Vista and later versions: Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.
 
 ### Linux
 
@@ -258,6 +337,7 @@ To use davfs2
 ```
 sudo apt-get install davfs2
 sudo mount -t davfs -o uid=<username> https://example.com/seafdav /media/seafdav/
+
 ```
 
 The -o option sets the owner of the mounted directory to <username> so that it's writable for non-root users.
@@ -266,6 +346,7 @@ It's recommended to disable LOCK operation for davfs2. You have to edit /etc/dav
 
 ```
  use_locks       0
+
 ```
 
 ### Mac OS X
@@ -278,7 +359,6 @@ Finder's support for WebDAV is also not very stable and slow. So it is recommend
 
 By default, seafdav is disabled. Check whether you have `enabled = true` in `seafdav.conf`.
 If not, modify it and restart seafile server.
-
 
 ### The client gets "Error: 404 Not Found"
 
