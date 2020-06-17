@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 2.0.3 (2020/06/17)
+
+* \[Win] Fix crash on Windows 10 1709 - 1803
+* \[Win] Show SeaDrive shortcut when opening files in 32-bit applications (e.g. Word)
+* \[Win] Avoid creating unnecessary conflict files
+* \[Win] Improve error message of opening placeholder files when SeaDrive is not running
+* \[Win] Support removing account information when uninstall
+
 ### 2.0.2 (2020/05/23)
 
 * \[Mac] Support syncing encrypted libraries
