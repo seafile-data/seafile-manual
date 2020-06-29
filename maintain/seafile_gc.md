@@ -13,8 +13,6 @@ The GC program cleans up two types of unused blocks:
 **Before running GC, you must shutdown the Seafile program on your server if you use the community edition. For professional edition, online GC operation is supported. If you use Professional edition, you don't need to shutdown the Seafile program if you are using MySQL.**
 This is because new blocks written into Seafile while GC is running may be mistakenly deleted by the GC program.
 
-**_Community version - GC cleanup Script_**
-
 At the bottom of the page there is a script that you can use to run the cleanup manually or e.g. once a week with as cronjob.
 
 ## Run GC
@@ -109,6 +107,17 @@ seaf-gc.sh -t 20
 ```
 
 Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.
+
+### Run GC based on library ID prefix
+
+Since GC usually runs quite slowly as it needs to traverse the entire library history. You can use multiple threads to run GC in parallel. For even larger deployments, it's also desirable to run GC on multiple server in parallel.
+
+A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.
+
+```
+seaf-gc.sh --id-prefix a123
+
+```
 
 ## GC cleanup script for Community Version
 

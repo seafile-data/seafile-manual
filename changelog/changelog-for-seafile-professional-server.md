@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.5 (2020/06/30)
+
+* Indexing LibreOffice files in file search
+* Support setting the expire date of a share to a specific date
+* \[fix] ccnet no longer listen on port 10001
+* \[fix] Fix virus scan via upload link
+* \[fix] Fix WebDAV failed login via WebDAV secret
+* \[fix] Fix some bugs in LDAP sync
+* \[fix] Fix term and condition feature
+* Other UI fixes
+
 ### 7.1.4 (2020/05/14)
 
 * \[fix] Fix listing LDAP imported users when number of users is greater than 500
