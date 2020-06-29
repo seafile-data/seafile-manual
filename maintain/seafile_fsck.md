@@ -13,6 +13,7 @@ Starting from version 4.1, we provide a seaf-fsck.sh script. The seaf-fsck tool 
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
+
 ```
 
 There are three modes of operation for seaf-fsck:
@@ -28,6 +29,7 @@ Running seaf-fsck.sh without any arguments will run a **read-only** integrity ch
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh
+
 ```
 
 If you want to check integrity for specific libraries, just append the library id's as arguments:
@@ -35,6 +37,7 @@ If you want to check integrity for specific libraries, just append the library i
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh [library-id1] [library-id2] ...
+
 ```
 
 The output looks like:
@@ -49,6 +52,7 @@ The output looks like:
 [02/13/15 16:21:07] fsck.c(85): Block 650fb22495b0b199cff0f1e1ebf036e548fcb95a is missing.
 [02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is curropted.
 [02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.
+
 ```
 
 The corrupted files and directories are reported.
@@ -60,6 +64,7 @@ Sometimes you can see output like the following:
 [02/13/15 16:36:11] fsck.c(476): Repo ca1a860d HEAD commit is corrupted, need to restore to an old version.
 [02/13/15 16:36:11] fsck.c(314): Scanning available commits...
 [02/13/15 16:36:11] fsck.c(376): Find available commit 1b26b13c(created at 2015-02-13 16:10:21) for repo ca1a860d.
+
 ```
 
 This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
@@ -78,6 +83,7 @@ Running the following command repairs all the libraries:
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh --repair
+
 ```
 
 Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:
@@ -85,10 +91,10 @@ Most of time you run the read-only integrity check first, to find out which libr
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh --repair [library-id1] [library-id2] ...
+
 ```
 
 After repairing, in the library history, seaf-fsck includes the list of files and folders that are corrupted. So it's much easier to located corrupted paths.
-
 
 ### Best Practice for Repairing a Library
 
@@ -96,8 +102,16 @@ To check all libraries and find out which library is corrupted, the system admin
 
 When the system admin find a library is corrupted, he/she should run seaf-fsck.sh with "--repair" for the library. After the command fixes the library, the admin should inform user to recover files from other places. There are two ways:
 
-- Upload corrupted files or folders via the web interface
-- If the library was synced to some desktop computer, and that computer has a correct version of the corrupted file, resyncing the library on that computer will upload the corrupted files to the server.
+* Upload corrupted files or folders via the web interface
+* If the library was synced to some desktop computer, and that computer has a correct version of the corrupted file, resyncing the library on that computer will upload the corrupted files to the server.
+
+## Speeding up FSCK by not checking file contents
+
+Starting from Pro edition 7.1.5, an option is added to speed up FSCK. Most of the running time of seaf-fsck is spent on calculating hashes for file contents. This hash will be compared with block object ID. If they're not consistent, the block is detected as corrupted.
+
+In many cases, the file contents won't be corrupted most of time. Some objects are just missing from the system. So it's enough to only check for object existence. This will greatly speed up the fsck process.
+
+To skip checking file contents, add the "--shallow" or "-s" option to seaf-fsck.
 
 ## Exporting Libraries to File System
 
@@ -108,6 +122,7 @@ The command syntax is
 ```
 cd seafile-server-latest
 ./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
+
 ```
 
 The argument `top_export_path` is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.

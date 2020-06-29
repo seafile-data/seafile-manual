@@ -193,13 +193,15 @@ Then you can add option `for_new_library` to the backends which are expected to 
 Run the `migrate-repo.sh` script to migrate library data between different storage backends.
 
 ```
-./migrate-repo.sh repo_id origin_storage_id destination_storage_id
+./migrate-repo.sh [repo_id] origin_storage_id destination_storage_id
 
 ```
 
 * repo_id: migrated library id
 * origin_storage_id: migrated origin storage id
 * destination_storage_id: migrated destination storage id
+
+repo_id is optional, if not specified, all libraries will be migrated.
 
 Before running the migration script, you can set the `OBJECT_LIST_FILE_PATH` environment variable to specify a path prefix to store the migrated object list.
 
