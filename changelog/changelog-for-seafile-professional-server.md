@@ -11,12 +11,15 @@ Please check our document for how to upgrade to 7.1: <https://download.seafile.c
 ### 7.1.5 (2020/06/30)
 
 * Indexing LibreOffice files in file search
-* Support setting the expire date of a share to a specific date
+* Support setting the expire date time of a share link to a specific date time
+* GC add --id-prefix option to scan a specific range of libraries
+* fsck add an option to not check block integrity to speed up scanning
 * \[fix] ccnet no longer listen on port 10001
-* \[fix] Fix virus scan via upload link
+* \[fix] Fix virus scan via upload link not work
 * \[fix] Fix WebDAV failed login via WebDAV secret
 * \[fix] Fix some bugs in LDAP sync
 * \[fix] Fix term and condition feature
+* \[fix] Fix support for institution feature
 * Other UI fixes
 
 ### 7.1.4 (2020/05/14)
