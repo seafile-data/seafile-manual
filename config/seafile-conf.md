@@ -103,7 +103,7 @@ fixed_block_size=2
 
 ```
 
-When users upload files in the web interafece, file server assigns an token to authorize the upload operation. This token is valid for 1 hour by default. When uploading a large file via WAN, the upload time can be longer than 1 hour. You can change the token expire time to a larger value.
+When users upload files in the web interface, file server assigns an token to authorize the upload operation. This token is valid for 1 hour by default. When uploading a large file via WAN, the upload time can be longer than 1 hour. You can change the token expire time to a larger value.
 
 ```
 [fileserver]
@@ -120,6 +120,17 @@ settings to solve it.
 [zip]
 # The file name encoding of the downloaded zip file.
 windows_encoding = iso-8859-1
+
+```
+
+The "httptemp" directory contains temporary files created during file upload and zip download. In some cases the temporary files are not cleaned up after the file transfer was interrupted. Starting from 7.1.5 version, file server will regularly scan the "httptemp" directory to remove files created long time ago.
+
+```
+[fileserver]
+# After how much time a temp file will be removed. The unit is in seconds. Default to 3 days.
+http_temp_file_ttl = x
+# File scan interval. The unit is in seconds. Default to 1 hour.
+http_temp_scan_interval = x
 
 ```
 
