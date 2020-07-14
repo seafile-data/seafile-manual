@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 2.0.4 (2020/07/13)
+
+* \[Win] Use username for cache folder name instead of a hash value
+* \[Win] Retry download files when pinning a folder
+* \[Win] Retry rename category folder when switching language
+* \[Win] Only allow install on Windows 10 1709 or later
+* \[Mac] Disable "search in Finder" option
+* Fix tray icon sync error status
+
 ### 2.0.3 (2020/06/17)
 
 * \[Win] Fix crash on Windows 10 1709 - 1803
