@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.6 (2020/07/28)
+
+* Add database connection pool to reduce database connection usage
+* \[fix] Fix WebDAV error if a file is moved immediately after uploading
+* Enable generating internal links for files in an encrypted library
+
 ### 7.1.5 (2020/06/30)
 
 * Indexing LibreOffice files in file search
