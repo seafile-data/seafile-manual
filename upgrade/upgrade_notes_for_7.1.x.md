@@ -141,6 +141,25 @@ sudo apt-get install python3-rados
 
 If you have customized the login page or other html pages, as we have removed some old javascript libraries, your customized pages may not work anymore. Please try to re-customize based on the newest version.
 
+### User name encoding issue with Shibboleth login
+
+We have two customers reported that after upgrading to version 7.1, users login via Shibboleth single sign on have a wrong name if the name contains a special character. We suspect it is a Shibboleth problem as it does not sending the name in UTF-8 encoding to Seafile. (<https://issues.shibboleth.net/jira/browse/SSPCPP-2>)
+
+The solution is to modify the code in seahub/thirdpart/shibboleth/middleware.py:
+
+```
+158         if nickname.strip():  # set nickname when it's not empty
+159             p.nickname = nickname
+
+to 
+
+158         if nickname.strip():  # set nickname when it's not empty
+159             p.nickname = nickname.encode("iso-8859-1”).decode('utf8')
+
+```
+
+If you have this problem too, please let us know.
+
 ## FAQ
 
 ### SQL Error during upgrade
