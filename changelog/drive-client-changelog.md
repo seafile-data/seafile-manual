@@ -1,5 +1,10 @@
 # SeaDrive Client Changelog
 
+### 2.0.5 (2020/07/30)
+
+* Fix occasional "permission denied" error when syncing a library
+* \[Win] Remove explorer shortcut when uninstall SeaDrive or change cache folder location
+
 ### 2.0.4 (2020/07/13)
 
 * \[Win] Use username for cache folder name instead of a hash value

@@ -135,6 +135,19 @@ SHARE_LINK_EXPIRE_DAYS_MIN = 3 # default is 0, no limit.
 # SHARE_LINK_EXPIRE_DAYS_MIN should be greater than SHARE_LINK_EXPIRE_DAYS_DEFAULT (If the latter is set).
 SHARE_LINK_EXPIRE_DAYS_MAX = 8 # default is 0, no limit.
 
+# Default expire days for upload link (since version 7.1.6)
+# Once this value is configured, the user can no longer generate an upload link with no expiration time.
+# If the expiration value is not set when the upload link is generated, the value configured here will be used.
+UPLOAD_LINK_EXPIRE_DAYS_DEFAULT = 5
+
+# minimum expire days for upload link (since version 7.1.6)
+# UPLOAD_LINK_EXPIRE_DAYS_MIN should be less than UPLOAD_LINK_EXPIRE_DAYS_DEFAULT (If the latter is set).
+UPLOAD_LINK_EXPIRE_DAYS_MIN = 3 # default is 0, no limit.
+
+# maximum expire days for upload link (since version 7.1.6)
+# UPLOAD_LINK_EXPIRE_DAYS_MAX should be greater than UPLOAD_LINK_EXPIRE_DAYS_DEFAULT (If the latter is set).
+UPLOAD_LINK_EXPIRE_DAYS_MAX = 8 # default is 0, no limit.
+
 # force user login when view file/folder share link (since version 6.3.6)
 SHARE_LINK_LOGIN_REQUIRED = True
 
