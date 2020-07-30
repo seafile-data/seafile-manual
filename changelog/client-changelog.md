@@ -2,6 +2,12 @@
 
 ## 7.0
 
+### 7.0.9 (2020/07/30)
+
+* Avoid downloading existing blocks during sync download
+* Fix crash when cancel syncing before a library is synced
+* Fix incorrect error message in some error situations
+
 ### 7.0.8 (2020/06/03)
 
 * Fix GUI crash on start
