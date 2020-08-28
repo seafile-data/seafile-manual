@@ -8,6 +8,16 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.7 (2020/08/28)
+
+* \[fix] Fix a bug in returned group library permission for  SeaDrive client
+* Support pagination when listing libraries in a group
+* Update wsgidav used in WebDAV
+* Remove redundent logs in seafile.log
+* \[fix] Fix "save to..." in share link
+* Add an option to show a user's email in sharing dialog (ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER)
+* \[fix] Fix virus scan results page can't be opened in system admin panel
+
 ### 7.1.6 (2020/07/28)
 
 * Add database connection pool to reduce database connection usage
