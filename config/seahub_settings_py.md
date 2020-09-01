@@ -359,6 +359,9 @@ ENABLE_CHANGE_PASSWORD = True
 # Since version 6.2.11
 ENABLE_FILE_COMMENT = True
 
+# If show contact email when search user.
+ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
+
 ```
 
 ## RESTful API
