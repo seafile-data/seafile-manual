@@ -78,6 +78,10 @@ Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch
 
 Please check our document for how to upgrade to 7.0: <https://download.seafile.com/published/support/server-upgrade/pro-7.0.md>
 
+### 7.0.19 (2020/09/07)
+
+* Fix translation
+
 ### 7.0.18 (2020/05/21)
 
 * Fix a bug in adding tag for files using context menu
