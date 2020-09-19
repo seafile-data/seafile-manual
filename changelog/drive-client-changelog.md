@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 1.0.12 (2020/08/25)
+
+* Fix occasional "permission denied" error when syncing a library
+
 ### 2.0.5 (2020/07/30)
 
 * Fix occasional "permission denied" error when syncing a library
