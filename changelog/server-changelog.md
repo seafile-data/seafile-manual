@@ -12,6 +12,25 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.5 (2020/09/22)
+
+* \[fix] Fix a bug in returned group library permission for  SeaDrive client
+* \[fix] Fix files preview using OnlyOffice in public shared links 
+* Support pagination when listing libraries in a group
+* Update wsgidav used in WebDAV
+* \[fix] Fix WebDAV failed login via WebDAV secret
+* \[fix] Fix WebDAV error if a file is moved immediately after uploading
+* Remove redundent logs in seafile.log
+* \[fix] Fix "save to..." in share link
+* Add an option to show a user's email in sharing dialog (ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER)
+* Add database connection pool to reduce database connection usage
+* Enable generating internal links for files in an encrypted library
+* Support setting the expire date time of a share link to a specific date time
+* GC add --id-prefix option to scan a specific range of libraries
+* fsck add an option to not check block integrity to speed up scanning
+* \[fix] ccnet no longer listen on port 10001
+
+
 ### 7.1.4 (2020/05/19)
 
 * \[fix] Fix page error in "System Admin-> Users -> A User -> Groups"
