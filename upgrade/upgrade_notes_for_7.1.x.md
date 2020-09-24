@@ -15,6 +15,8 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
 
 ### Deploy Python3
 
+Note, you should install Python libraries system wide using root user or sudo mode.
+
 #### Seafile-CE
 
 * For Ubuntu 16.04/18.04 or Debian 10
@@ -22,7 +24,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   apt-get install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -32,7 +34,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   yum install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -44,7 +46,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   apt-get install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
@@ -54,7 +56,7 @@ To support both Python 3.6 and 3.7, we no longer bundle python libraries with Se
   ```sh
   yum install python3 python3-setuptools python3-pip -y
 
-  pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
       django-pylibmc django-simple-captcha python3-ldap
 
   ```
