@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 2.0.6 (2020/09/24)
+
+* \[Win] Remove invalid characters from sync root folder name
+* \[Win] Increase request timeout for rename library, delete library, create library, move folders
+* \[Win] Avoid creating redundant sync root folders on restart
+* \[Win] Support pre-configuration registry keys
+
 ### 1.0.12 (2020/08/25)
 
 * Fix occasional "permission denied" error when syncing a library
