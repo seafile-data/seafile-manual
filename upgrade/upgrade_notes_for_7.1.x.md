@@ -145,6 +145,8 @@ If you have customized the login page or other html pages, as we have removed so
 
 ### User name encoding issue with Shibboleth login
 
+> Note, the following patch is included in version pro-7.1.8 and ce-7.1.5 already.
+
 We have two customers reported that after upgrading to version 7.1, users login via Shibboleth single sign on have a wrong name if the name contains a special character. We suspect it is a Shibboleth problem as it does not sending the name in UTF-8 encoding to Seafile. (<https://issues.shibboleth.net/jira/browse/SSPCPP-2>)
 
 The solution is to modify the code in seahub/thirdpart/shibboleth/middleware.py:
