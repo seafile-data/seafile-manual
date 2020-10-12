@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
 
+### 7.1.8 (2020/10/12)
+
+* \[fix] Fix user name encoding for Shibboleth SSO
+* \[fix] Add back the remote wipe feature when deleting a linked devices in admin panel
+* \[fix] Fix sorting problem in some tables in admin panel
+* \[fix] Fix auto-reactive user when a user deleted from LDAP and then added back
+* \[fix] Fix a few bugs in organization admin panel in multi-tenancy mode
+* \[fix] Fix libraries unsynced in a client if database crash at the server side
+
 ### 7.1.7 (2020/08/28)
 
 * \[fix] Fix a bug in returned group library permission for  SeaDrive client
