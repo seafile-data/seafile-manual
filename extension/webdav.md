@@ -32,6 +32,13 @@ Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:
 
 **After Seafile 7.1.x, Seafdav does not support Fastcgi, only Wsgi**. So if you want to configure seafdav behind a proxy server, you have to use proxy configuration instead of fastcgi.
 
+In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
+
+```
+show_repo_id=true
+
+```
+
 ### Proxy with Nginx
 
 For Seafdav, the configuration of Nginx is as follows:
