@@ -2,6 +2,11 @@
 
 ## 7.0
 
+### 7.0.10 (2020/10/16)
+
+* Fix sync error when downloading duplicated files from a library
+* Fix crash bug when downloading files with very long names
+
 ### 7.0.9 (2020/07/30)
 
 * Avoid downloading existing blocks during sync download
