@@ -1,5 +1,10 @@
 # SeaDrive Client Changelog
 
+### 2.0.7 (2020/10/31)
+
+* \[Win] Avoid unintended file deletions when removing seafile account
+* \[Mac] Fix some application compatibility issues caused by extended file attributes handling
+
 ### 2.0.6 (2020/09/24)
 
 * \[Win] Remove invalid characters from sync root folder name
