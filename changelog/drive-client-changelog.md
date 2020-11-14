@@ -1,5 +1,10 @@
 # SeaDrive Client Changelog
 
+### 2.0.8 (2020/11/14)
+
+* \[Mac] Support macOS 11
+* \[Win] Fix moving multiple files/folders across different folders
+
 ### 2.0.7 (2020/10/31)
 
 * \[Win] Avoid unintended file deletions when removing seafile account
