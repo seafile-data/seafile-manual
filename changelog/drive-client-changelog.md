@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.9 (2020/11/20)
+
+* \[Mac] Fix failure to load kernel extension on macOS 11 Big Sur
+
 ### 2.0.8 (2020/11/14)
 
 * \[Mac] Support macOS 11
