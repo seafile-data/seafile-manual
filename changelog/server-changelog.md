@@ -2,6 +2,20 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 8.0
+
+Please check our document for how to upgrade to 8.0: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_8.0.md>
+
+### 8.0.0 beta (2020/11/27)
+
+* Support searching file in a library
+* Rewrite upload link page to use React technology
+* Improve GC performance
+* Upgrade Django to 2.2 version
+* Remove ccnet-server component
+* Update help page
+
+
 ## 7.1
 
 **Feature changes**
@@ -29,7 +43,6 @@ Please check our document for how to upgrade to 7.1: <https://download.seafile.c
 * GC add --id-prefix option to scan a specific range of libraries
 * fsck add an option to not check block integrity to speed up scanning
 * \[fix] ccnet no longer listen on port 10001
-
 
 ### 7.1.4 (2020/05/19)
 
