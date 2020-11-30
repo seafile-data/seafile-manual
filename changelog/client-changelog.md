@@ -1,5 +1,13 @@
 # Seafile Client Changelog
 
+## 8.0
+
+### 8.0.0 beta (2020/11/28)
+
+* \[Win] Build with Visual Studio 2019 instead of MinGW
+* \[Win/Mac] Upgrade Qt version to 5.15.1 (which supports TLS 1.3)
+* Add V4 encryption library support, which will be available in server 8.0
+
 ## 7.0
 
 ### 7.0.10 (2020/10/16)

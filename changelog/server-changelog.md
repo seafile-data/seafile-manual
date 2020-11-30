@@ -14,7 +14,7 @@ Please check our document for how to upgrade to 8.0: <https://download.seafile.c
 * Upgrade Django to 2.2 version
 * Remove ccnet-server component
 * Update help page
-
+* Release v4 encrypted library format to enhance security for v3 encrypted format
 
 ## 7.1
 
