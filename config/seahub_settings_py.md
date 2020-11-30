@@ -113,7 +113,8 @@ Options for libraries:
 ENABLE_ENCRYPTED_LIBRARY = True
 
 # version for encrypted library
-# should only be `2` or `3`
+# should only be `2` or `4`.
+# version 3 is insecure (using AES128 encryption) so it's not recommended any more.
 ENCRYPTED_LIBRARY_VERSION = 2
 
 # mininum length for password of encrypted library
