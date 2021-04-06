@@ -97,6 +97,7 @@ cd ~/haiwen/seafile-server-latest
 ./migrate.sh /opt
 
 ```
+Finally, you need to stop the seafile service first, and then do an incremental migration.
 
 ## Replace the original seafile.conf
 
@@ -110,3 +111,5 @@ mv /opt/seafile.conf ~/haiwen/conf
 now we only have configurations about backend, more config options, e.g. memcache and quota, can then be copied from the original seafile.conf file.
 
 After replacing seafile.conf, you can restart seafile server and access the data on the new backend.
+
+
