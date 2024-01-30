@@ -3,8 +3,10 @@
 ## Preparation
 
 1. Make sure you are running the Seafile Community version 7.0.x, if not please refer to [Upgrade Documentation](https://download.seafile.com/published/seafile-manual/docker/6.3%20upgrade%20to%207.0.md)。
+
 2. Purchase Seafile Professional license file.
-3. Download the [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/pro-edition/docker-compose.yml) of Seafile Pro.
+
+3. Download the [docker-compose.yml](https://manual.seafile.com/docker/pro-edition/10.0/docker-compose.yml "docker-compose.yml") of Seafile Pro.
 
 ## Migrate
 
@@ -12,7 +14,6 @@
 
 ```sh
 docker-compose down
-
 ```
 
 **To ensure data security, it is recommended that you back up your MySQL data.**
@@ -25,9 +26,12 @@ Copy the `seafile-license.txt` to the volume directory of the Seafile CE's data.
 
 Replace the old `docker-compose.yml` file with the new `docker-compose.yml` file and modify its configuration based on your actual situation:
 
-* The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD) should be consistent with the old one;
+* The password of MySQL root (MYSQL\_ROOT\_PASSWORD and DB\_ROOT\_PASSWD) should be consistent with the old one;
+
 * The volume directory of MySQL data (volumes) should be consistent with the old one;
+
 * The volume directory of Seafile data (volumes) should be consistent with the old one;
+
 * The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：`/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data`；
 
 ### Do the migration
@@ -38,14 +42,12 @@ Run the following command to run the Seafile-Pro container：
 
 ```sh
 docker-compose up
-
 ```
 
 Then run the migration script by executing the following command:
 
 ```sh
 docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py setup --migrate
-
 ```
 
 **After the migration script runs successfully, restart the Seafile Pro container.**
